@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENIM — Заңдылық пен Қауіпсіздік Хабы</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'matte-orange': '#E66E38',
+                        'matte-dark': '#121214',
+                        'matte-bg': '#0B0B0C'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .perspective-container {
+            perspective: 1000px;
+        }
+        .perspective-card {
+            transform: rotateX(6deg) rotateY(-3deg);
+            transition: transform 0.5s ease, border-color 0.5s ease;
+        }
+        .perspective-card:hover {
+            transform: rotateX(0deg) rotateY(0deg) translateY(-8px);
+            border-color: rgba(230, 110, 56, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-[#0B0B0C] text-white min-h-screen font-sans px-6 py-16 md:px-12 relative overflow-x-hidden">
+
+    <div class="fixed top-0 left-1/4 w-[400px] h-[400px] bg-matte-orange/5 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
+
+    <header class="max-w-6xl mx-auto mb-16 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-black font-mono tracking-tight text-white mb-2">ЗАҢДЫЛЫҚ ПЕН ҚАУІПСІЗДІК</h1>
+            <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">Кәмелетке толмағандар үшін заңнамалық шешімдер</p>
+        </div>
+        <a href="index.html" class="text-sm font-mono text-slate-400 hover:text-matte-orange transition-colors flex items-center gap-2">
+            ← Артқа қайту
+        </a>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 perspective-container">
+
+        <!-- Panel 1: SENIM Junior Legal Protocol -->
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-4xl">🛡️</span>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Junior (14-17)</span>
+                </div>
+                <h2 class="text-2xl font-bold font-mono text-white mb-4">SENIM Junior ережелері</h2>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                    ҚР Еңбек Кодексінің 31-бабына сай, 14-17 жастағы жасөспірімдердің жұмыс істеуі үшін ата-анасының немесе қорғаншысының жазбаша (немесе SMS OTP) рұқсаты жүйелі түрде расталады.
+                </p>
+                <ul class="text-xs text-slate-300 space-y-2 list-disc pl-4 font-mono">
+                    <li>Ата-аналық бақылау панелі белсенді</li>
+                    <li>Жұмыс уақыты аптасына 24 сағаттан аспайды</li>
+                    <li>Жобалар тек оқу бағдарламасына зиян тигізбейтін бағыттардан тұрады</li>
+                </ul>
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 space-y-3 font-mono text-xs">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Автоматты келісімшарттар:</span>
+                    <span class="text-emerald-400 font-bold">Іске қосылған</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 2: SENIM Pro Open Banking & Taxes -->
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-4xl">💼</span>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Pro (18-22)</span>
+                </div>
+                <h2 class="text-2xl font-bold font-mono text-white mb-4">SENIM Pro ережелері</h2>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                    18-22 жас аралығындағы толық дербес мамандар үшін салық және заңды есептер толығымен автоматтандырылған. Платформа ҚР Салық заңнамасына сай 1% салықты автоматты түрде аударады.
+                </p>
+                <ul class="text-xs text-slate-300 space-y-2 list-disc pl-4 font-mono">
+                    <li>Ашық банкинг API желілеріне қосылған</li>
+                    <li>Шектеусіз жұмыс уақыты мен жоғары тарифтер</li>
+                    <li>Автоматты түрде салық декларациясын толтыру</li>
+                </ul>
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 space-y-3 font-mono text-xs">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Салық мөлшерлемесі:</span>
+                    <span class="text-white font-bold">1% (Жеңілдетілген режим)</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

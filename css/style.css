@@ -1,0 +1,100 @@
+/* SENIM Premium Matte Design System */
+html, body {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    background-color: #0B0B0C;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #FFFFFF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0B0B0C;
+}
+::-webkit-scrollbar-thumb {
+    background: #222224;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #E66E38;
+}
+
+/* Matte Design Tokens */
+.border-matte-orange-12 {
+    border: 1px solid rgba(230, 110, 56, 0.12);
+}
+
+.bg-matte-dark {
+    background-color: #121214;
+}
+
+/* Micro-pill architectural CSS classes */
+.micro-pill {
+    background-color: rgba(30, 41, 59, 0.4);
+    border: 1px solid #1E293B;
+    color: #CBD5E1;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    margin: 0.25rem;
+    cursor: pointer;
+}
+.micro-pill:hover {
+    border-color: rgba(230, 110, 56, 0.6);
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+/* Custom inputs styling */
+.matte-input {
+    background-color: transparent;
+    border: 1px solid #222224;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+.matte-input:focus {
+    border-color: #E66E38;
+    outline: none;
+    box-shadow: 0 0 10px rgba(230, 110, 56, 0.1);
+}
+
+/* Glassmorphic panel — used by all modals */
+.glass-panel {
+    background: rgba(18, 18, 20, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(230, 110, 56, 0.12);
+}
+
+/* Avatar glow ring */
+.avatar-ring {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 0 0 2px #E66E38, 0 0 20px rgba(230, 110, 56, 0.35);
+    border-radius: 9999px;
+}
+
+/* Escrow badge glow */
+.escrow-badge {
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    color: #34d399;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+}

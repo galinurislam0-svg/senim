@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENIM — Triple Cognitive AI Қорғанысы</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'matte-orange': '#E66E38',
+                        'matte-dark': '#121214',
+                        'matte-bg': '#0B0B0C'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .perspective-container {
+            perspective: 1000px;
+        }
+        .perspective-card {
+            transform: rotateX(6deg) rotateY(-3deg);
+            transition: transform 0.5s ease, border-color 0.5s ease;
+        }
+        .perspective-card:hover {
+            transform: rotateX(0deg) rotateY(0deg) translateY(-8px);
+            border-color: rgba(230, 110, 56, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-[#0B0B0C] text-white min-h-screen font-sans px-6 py-16 md:px-12 relative overflow-x-hidden">
+
+    <div class="fixed top-0 left-1/4 w-[400px] h-[400px] bg-matte-orange/5 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
+
+    <header class="max-w-6xl mx-auto mb-16 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-black font-mono tracking-tight text-white mb-2">TRIPLE COGNITIVE AI ҚОРҒАНЫСЫ</h1>
+            <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">Жасанды интеллект мониторинг жүйесінің сипаттамасы</p>
+        </div>
+        <a href="index.html" class="text-sm font-mono text-slate-400 hover:text-matte-orange transition-colors flex items-center gap-2">
+            ← Артқа қайту
+        </a>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 perspective-container">
+
+        <!-- Panel 1: NLP Task Filter -->
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-4xl">🤖</span>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">NLP Filter</span>
+                </div>
+                <h2 class="text-xl font-bold font-mono text-white mb-4">NLP Тапсырма Сүзгісі</h2>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                    Тапсырмалар мәтінін толық сканерлеп, физикалық қауіптілік тудыратын жұмыстарды (мысалы: "қоймада жұмыс істеу", "жәшік тасу", "оффлайн кездесу") жүйелі түрде тауып, бұғаттайды.
+                </p>
+            </div>
+            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
+                Қауіпсіздік индексі: <span class="text-emerald-400 font-bold">100% КЕПІЛДІК</span>
+            </div>
+        </div>
+
+        <!-- Panel 2: Escrow Chat Sentinel -->
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-4xl">🛡️</span>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Chat Sentinel</span>
+                </div>
+                <h2 class="text-xl font-bold font-mono text-white mb-4">Escrow Чат Күзетшісі</h2>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                    Чат ішіндегі сыртқы желілерге сілтемелерді, Kaspi/карта нөмірлерін немесе телефондарды автоматты түрде тауып, бұғаттайтын қауіпсіз оқшаулау сүзгісі.
+                </p>
+            </div>
+            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
+                Фишингтен қорғау: <span class="text-emerald-400 font-bold">БЕЛСЕНДІ</span>
+            </div>
+        </div>
+
+        <!-- Panel 3: Dual-AI Co-Pilot -->
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-4xl">💡</span>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Co-Pilot</span>
+                </div>
+                <h2 class="text-xl font-bold font-mono text-white mb-4">Екі жақты AI Көмекшісі</h2>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                    Жастарға код немесе дизайн бойынша кеңес беретін тәлімгер, ал бизнестерге сауатты техникалық талаптарды секунд ішінде құрастыратын автоматты конструктор.
+                </p>
+            </div>
+            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
+                Дайындық жылдамдығы: <span class="text-white font-bold">&lt; 3 секунд</span>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

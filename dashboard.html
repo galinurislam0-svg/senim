@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENIM — Жас Маман Жұмыс Кеңістігі</title>
+    <meta name="description" content="SENIM фриланс платформасының кәсіби жас маман жұмыс кеңістігі. Escrow тапсырмалары, AI Mentor, табыс аналитикасы.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'matte-orange': '#E66E38',
+                        'matte-dark':   '#121214',
+                        'matte-bg':     '#0B0B0C'
+                    },
+                    fontFamily: {
+                        mono: ['Courier New', 'Courier', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Page-level scroll for dashboard — override snap */
+        html, body {
+            scroll-snap-type: none;
+            overflow-y: auto;
+            background-color: #0B0B0C;
+        }
+
+        /* Sidebar */
+        #sidebar { width: 220px; flex-shrink: 0; }
+
+        /* Ambient glow orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 9999px;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Revenue sparkline bars */
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .bar-fill {
+            width: 18px;
+            border-radius: 4px 4px 0 0;
+            background: linear-gradient(to top, #E66E38, #fbbf24);
+            transition: height 0.8s ease;
+        }
+
+        /* Terminal scrollbar */
+        #ai-mentor-console::-webkit-scrollbar { width: 4px; }
+        #ai-mentor-console::-webkit-scrollbar-track { background: #0B0B0C; }
+        #ai-mentor-console::-webkit-scrollbar-thumb { background: #333; border-radius: 9999px; }
+
+        /* Gig card hover */
+        .gig-card {
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+        .gig-card:hover {
+            border-color: rgba(230, 110, 56, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Nav item active state */
+        .nav-item.active span { color: #E66E38; }
+        .nav-item.active { background: rgba(230, 110, 56, 0.06); border-radius: 0.75rem; }
+
+        /* Tax ledger row */
+        .ledger-row:nth-child(odd) { background: rgba(255,255,255,0.02); }
+    </style>
+</head>
+<body class="bg-[#0B0B0C] text-white min-h-screen font-sans">
+
+    <!-- Ambient background glows -->
+    <div class="glow-orb w-[500px] h-[500px] bg-matte-orange/5 top-0 left-0 -translate-x-1/3 -translate-y-1/3"></div>
+    <div class="glow-orb w-[400px] h-[400px] bg-orange-900/10 bottom-0 right-0 translate-x-1/3 translate-y-1/3"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- LAYOUT ROOT                                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="relative z-10 flex min-h-screen">
+
+        <!-- ─── SIDEBAR ──────────────────────────────────────────────── -->
+        <aside id="sidebar" class="hidden lg:flex flex-col justify-between bg-matte-dark/60 border-r border-slate-900 px-5 py-8 sticky top-0 h-screen">
+            <div>
+                <!-- Brand -->
+                <a href="index.html" class="flex items-center gap-2 mb-10">
+                    <span class="text-xl font-black font-mono text-matte-orange tracking-tight">SENIM</span>
+                    <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest mt-0.5">Platform</span>
+                </a>
+
+                <!-- Nav -->
+                <nav class="space-y-1">
+                    <a href="#overview" class="nav-item active flex items-center gap-3 px-3 py-2.5 cursor-pointer group">
+                        <svg class="w-4 h-4 text-matte-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                        <span class="text-xs font-mono text-matte-orange font-bold">Шолу</span>
+                    </a>
+                    <a href="#gigs" class="nav-item flex items-center gap-3 px-3 py-2.5 cursor-pointer group">
+                        <svg class="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        <span class="text-xs font-mono text-slate-500 group-hover:text-white transition-colors font-bold">Тапсырмалар</span>
+                    </a>
+                    <a href="#finance" class="nav-item flex items-center gap-3 px-3 py-2.5 cursor-pointer group">
+                        <svg class="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-xs font-mono text-slate-500 group-hover:text-white transition-colors font-bold">Қаржы</span>
+                    </a>
+                    <a href="#mentor" class="nav-item flex items-center gap-3 px-3 py-2.5 cursor-pointer group">
+                        <svg class="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        <span class="text-xs font-mono text-slate-500 group-hover:text-white transition-colors font-bold">AI Mentor</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Logout -->
+            <a href="index.html" class="flex items-center gap-2 text-xs font-mono text-slate-600 hover:text-matte-orange transition-colors px-3">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                </svg>
+                Шығу
+            </a>
+        </aside>
+
+        <!-- ─── MAIN CONTENT ───────────────────────────────────────── -->
+        <main class="flex-1 overflow-y-auto">
+
+            <!-- ── TOP NAV BAR ────────────────────────────────────── -->
+            <header class="sticky top-0 z-20 bg-[#0B0B0C]/80 backdrop-blur-xl border-b border-slate-900 px-6 lg:px-10 py-4 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-mono text-slate-600 uppercase tracking-widest">ЖАС КӘСІБИ ЖҰМЫС КЕНІСТІГІ</p>
+                    <h1 class="text-lg font-black font-mono text-white leading-tight" id="dashboard-greeting">Сәлеметсіз бе 👋</h1>
+                </div>
+
+                <!-- Profile chip -->
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden sm:block">
+                        <span id="user-profile-name" class="text-sm font-bold text-white block font-mono"></span>
+                        <span class="text-[10px] font-mono text-matte-orange">Level 2 · Expert</span>
+                    </div>
+                    <div id="user-avatar-initials"
+                         class="avatar-ring w-10 h-10 rounded-full bg-gradient-to-tr from-matte-orange to-amber-400 flex items-center justify-center text-black font-black font-mono text-sm cursor-pointer">
+                        ЖМ
+                    </div>
+                </div>
+            </header>
+
+            <!-- ── SECTION: OVERVIEW ──────────────────────────────── -->
+            <section id="overview" class="px-6 lg:px-10 pt-8 pb-6">
+
+                <!-- Balance ledger cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+                    <!-- Card 1 -->
+                    <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl p-5 hover:border-matte-orange/30 transition-colors">
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Бұғатталған қаражат</p>
+                        <p class="text-2xl font-black font-mono text-matte-orange">120,000 ₸</p>
+                        <p class="text-[10px] font-mono text-slate-600 mt-2">Escrow vault · 2 белсенді жоба</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl p-5 hover:border-matte-orange/30 transition-colors">
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Қолжетімді теңгерім</p>
+                        <p class="text-2xl font-black font-mono text-white">45,800 ₸</p>
+                        <p class="text-[10px] font-mono text-slate-600 mt-2">Банкке аударуға дайын</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl p-5 hover:border-matte-orange/30 transition-colors">
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Осы айдағы табыс</p>
+                        <p class="text-2xl font-black font-mono text-emerald-400">92,000 ₸</p>
+                        <p class="text-[10px] font-mono text-emerald-600 mt-2">↑ +18% алдыңғы айдан</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl p-5 hover:border-matte-orange/30 transition-colors">
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Орындалған жобалар</p>
+                        <p class="text-2xl font-black font-mono text-white">18</p>
+                        <p class="text-[10px] font-mono text-slate-600 mt-2">Рейтинг: ⭐ 4.97 / 5.0</p>
+                    </div>
+                </div>
+
+                <!-- Revenue sparkline -->
+                <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl p-6 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Ай сайынғы табыс аналитикасы</p>
+                            <p class="text-sm font-bold font-mono text-white mt-1">2026 · Жыл бойынша</p>
+                        </div>
+                        <span class="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full font-bold">LIVE TRACKING</span>
+                    </div>
+                    <div class="flex items-end gap-2 h-24" id="revenue-chart">
+                        <!-- Bars rendered by JS -->
+                    </div>
+                    <div class="flex gap-2 mt-2" id="revenue-labels">
+                        <!-- Labels rendered by JS -->
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ── SECTION: GIG BOARD ─────────────────────────────── -->
+            <section id="gigs" class="px-6 lg:px-10 pb-8">
+                <div class="flex justify-between items-center mb-5">
+                    <div>
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Escrow қорғалған тапсырмалар</p>
+                        <h2 class="text-xl font-black font-mono text-white mt-1">Ашық Gig Board</h2>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">3 ашық тапсырма</span>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+                    <!-- Gig 1 -->
+                    <div class="gig-card bg-matte-dark/60 border border-slate-900 rounded-2xl p-6">
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                    <span class="escrow-badge">[ESCROW ALLOCATED]</span>
+                                    <span class="text-[10px] font-mono text-slate-500">React · Web Dev</span>
+                                    <span class="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full">Level 2+</span>
+                                </div>
+                                <h3 class="text-sm font-bold font-mono text-white leading-snug">Figma макетін React лэндингіне айналдыру</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Жас мамандарға арналған адаптивті дизайнды React + Tailwind форматына өткізу. Mobile-first тәсіл.</p>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <p class="text-lg font-black font-mono text-white">85,000 ₸</p>
+                                <p class="text-[10px] font-mono text-slate-500">7 күн</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button onclick="handleGigApply(this, 'Figma макетін React лэндингіне айналдыру')"
+                                    class="bg-matte-orange hover:bg-orange-500 text-black font-black text-xs px-5 py-2 rounded-xl transition-all duration-300 font-mono">
+                                Тапсырманы орындау →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Gig 2 -->
+                    <div class="gig-card bg-matte-dark/60 border border-slate-900 rounded-2xl p-6">
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                    <span class="escrow-badge">[ESCROW ALLOCATED]</span>
+                                    <span class="text-[10px] font-mono text-slate-500">Python · AI</span>
+                                    <span class="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full">Level 3+</span>
+                                </div>
+                                <h3 class="text-sm font-bold font-mono text-white leading-snug">CSV деректерін талдайтын Python скрипті жазу</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pandas кітапханасы арқылы сату деректерін талдап, автоматты Excel есебін шығаратын скрипт.</p>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <p class="text-lg font-black font-mono text-white">120,000 ₸</p>
+                                <p class="text-[10px] font-mono text-slate-500">10 күн</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button onclick="handleGigApply(this, 'CSV деректерін талдайтын Python скрипті жазу')"
+                                    class="bg-matte-orange hover:bg-orange-500 text-black font-black text-xs px-5 py-2 rounded-xl transition-all duration-300 font-mono">
+                                Тапсырманы орындау →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Gig 3 -->
+                    <div class="gig-card bg-matte-dark/60 border border-slate-900 rounded-2xl p-6">
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                    <span class="escrow-badge">[ESCROW ALLOCATED]</span>
+                                    <span class="text-[10px] font-mono text-slate-500">Figma · UI/UX</span>
+                                    <span class="text-[10px] font-mono text-matte-orange bg-matte-orange/10 px-2 py-0.5 rounded-full">Level 1+</span>
+                                </div>
+                                <h3 class="text-sm font-bold font-mono text-white leading-snug">Мобильді қосымшаға арналған UI дизайн жүйесі</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Figma-да толық компонент кітапханасы: батырмалар, формалар, карточкалар, навигация.</p>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <p class="text-lg font-black font-mono text-white">60,000 ₸</p>
+                                <p class="text-[10px] font-mono text-slate-500">5 күн</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button onclick="handleGigApply(this, 'Мобильді қосымшаға арналған UI дизайн жүйесі')"
+                                    class="bg-matte-orange hover:bg-orange-500 text-black font-black text-xs px-5 py-2 rounded-xl transition-all duration-300 font-mono">
+                                Тапсырманы орындау →
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ── SECTION: AI MENTOR ─────────────────────────────── -->
+            <section id="mentor" class="px-6 lg:px-10 pb-16">
+                <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl overflow-hidden">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-900">
+                        <div>
+                            <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">SENIM AI</p>
+                            <h2 class="text-sm font-black font-mono text-white">🤖 AI Mentor Workspace</h2>
+                        </div>
+                        <span class="text-[10px] font-mono bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full font-bold animate-pulse">● ONLINE</span>
+                    </div>
+
+                    <!-- Terminal -->
+                    <div id="ai-mentor-console"
+                         class="px-6 py-4 h-52 overflow-y-auto font-mono text-xs text-slate-400 space-y-1.5 bg-black/40 leading-relaxed">
+                        <div class="text-slate-600">// SENIM AI Mentor v2.6 — іске қосылды</div>
+                        <div class="text-teal-400">// Сәлеметсіз бе! Код, дизайн немесе логика бойынша кез-келген сұрақты қойыңыз.</div>
+                    </div>
+
+                    <!-- Input row -->
+                    <div class="flex gap-3 px-6 py-4 border-t border-slate-900 bg-matte-dark/40">
+                        <input type="text"
+                               id="ai-mentor-input"
+                               placeholder="Код немесе логика бойынша сұрақ қойыңыз... [SENTINEL ACTIVE]"
+                               class="flex-1 bg-black/60 border border-slate-800 text-white rounded-xl px-4 py-2.5 text-xs font-mono outline-none focus:border-matte-orange transition-colors placeholder-slate-600">
+                        <button id="ai-ask-btn"
+                                class="bg-matte-orange hover:bg-orange-500 text-black font-black text-xs px-5 py-2.5 rounded-xl transition-all font-mono flex-shrink-0">
+                            Жіберу
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── SECTION: FINANCE / TAX LEDGER ─────────────────── -->
+            <section id="finance" class="px-6 lg:px-10 pb-16">
+                <div class="flex justify-between items-center mb-5">
+                    <div>
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Автоматты есептеу</p>
+                        <h2 class="text-xl font-black font-mono text-white mt-1">Салық Есеп Журналы</h2>
+                    </div>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold">1% ЖК Режимі</span>
+                </div>
+
+                <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs font-mono">
+                            <thead>
+                                <tr class="border-b border-slate-900 text-slate-500 uppercase tracking-wider text-[10px]">
+                                    <th class="px-5 py-3 text-left">Жоба</th>
+                                    <th class="px-5 py-3 text-right">Жалпы төлем</th>
+                                    <th class="px-5 py-3 text-right">Салық (1%)</th>
+                                    <th class="px-5 py-3 text-right">Таза табыс</th>
+                                    <th class="px-5 py-3 text-left">Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="ledger-row border-b border-slate-900/60">
+                                    <td class="px-5 py-3 text-slate-300">Figma → React конверсия</td>
+                                    <td class="px-5 py-3 text-right text-white font-bold">85,000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange">850 ₸</td>
+                                    <td class="px-5 py-3 text-right text-emerald-400 font-bold">84,150 ₸</td>
+                                    <td class="px-5 py-3"><span class="escrow-badge">ЖІБЕРІЛДІ</span></td>
+                                </tr>
+                                <tr class="ledger-row border-b border-slate-900/60">
+                                    <td class="px-5 py-3 text-slate-300">SMM мазмұн жоспары</td>
+                                    <td class="px-5 py-3 text-right text-white font-bold">45,000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange">450 ₸</td>
+                                    <td class="px-5 py-3 text-right text-emerald-400 font-bold">44,550 ₸</td>
+                                    <td class="px-5 py-3"><span class="escrow-badge">ЖІБЕРІЛДІ</span></td>
+                                </tr>
+                                <tr class="ledger-row border-b border-slate-900/60">
+                                    <td class="px-5 py-3 text-slate-300">Python деректер скрипті</td>
+                                    <td class="px-5 py-3 text-right text-white font-bold">120,000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange">1,200 ₸</td>
+                                    <td class="px-5 py-3 text-right text-amber-400 font-bold">118,800 ₸</td>
+                                    <td class="px-5 py-3">
+                                        <span class="text-[10px] font-mono bg-amber-400/10 text-amber-400 px-2 py-0.5 rounded-full font-bold">ESCROW</span>
+                                    </td>
+                                </tr>
+                                <tr class="border-t-2 border-slate-800">
+                                    <td class="px-5 py-3 text-slate-500 font-bold uppercase tracking-wider text-[10px]">БАРЛЫҒЫ</td>
+                                    <td class="px-5 py-3 text-right text-white font-black">250,000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange font-black">2,500 ₸</td>
+                                    <td class="px-5 py-3 text-right text-emerald-400 font-black">247,500 ₸</td>
+                                    <td class="px-5 py-3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ── GIG APPLY TOAST NOTIFICATION ────────────────────────────── -->
+    <div id="gig-toast"
+         class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 opacity-0 translate-y-4 transition-all duration-400 pointer-events-none">
+        <div class="bg-emerald-950 border border-emerald-500/40 text-emerald-400 font-mono text-xs px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
+            <span class="text-emerald-400 font-bold">✓</span>
+            <span id="gig-toast-msg">Тапсырмаға өтінім жіберілді!</span>
+        </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────────── -->
+    <!-- DASHBOARD RUNTIME SCRIPT                                         -->
+    <!-- ─────────────────────────────────────────────────────────────── -->
+    <!-- ── ENTERPRISE ENGINE ──────────────────────────────────────────── -->
+    <script src="js/enterprise.js"></script>
+
+    <script>
+        // ── IDENTITY INJECTION ────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            const activeSessionName = localStorage.getItem('senim_user_name') || 'Жас Кәсіпкер';
+
+            // Header greeting
+            const greeting = document.getElementById('dashboard-greeting');
+            if (greeting) greeting.textContent = `Сәлеметсіз бе, ${activeSessionName.split(' ')[0]} 👋`;
+
+            // Profile name chip
+            const profileNameEl = document.getElementById('user-profile-name');
+            if (profileNameEl) profileNameEl.textContent = activeSessionName;
+
+            // Avatar initials
+            const avatarEl = document.getElementById('user-avatar-initials');
+            if (avatarEl) {
+                const initials = activeSessionName
+                    .split(' ')
+                    .map(token => token[0] || '')
+                    .join('')
+                    .toUpperCase()
+                    .substring(0, 2);
+                avatarEl.textContent = initials || 'ЖМ';
+            }
+
+            // ── REVENUE SPARKLINE ─────────────────────────────────────
+            const months  = ['Қаң', 'Ақп', 'Нау', 'Сәу', 'Мам', 'Мау', 'Шіл'];
+            const revenue = [28000, 35000, 42000, 38000, 65000, 81000, 92000];
+            const maxRev  = Math.max(...revenue);
+            const chartEl = document.getElementById('revenue-chart');
+            const labelEl = document.getElementById('revenue-labels');
+
+            if (chartEl && labelEl) {
+                months.forEach((month, i) => {
+                    const heightPct = Math.round((revenue[i] / maxRev) * 100);
+                    const isLast = i === months.length - 1;
+
+                    const barWrapper = document.createElement('div');
+                    barWrapper.className = 'bar-item flex-1';
+                    barWrapper.innerHTML = `
+                        <div class="bar-fill w-full" style="height: 0; max-height: 96px;" data-height="${heightPct}"></div>
+                    `;
+                    chartEl.appendChild(barWrapper);
+
+                    const labelDiv = document.createElement('div');
+                    labelDiv.className = `flex-1 text-center text-[9px] font-mono mt-1 ${isLast ? 'text-matte-orange font-bold' : 'text-slate-600'}`;
+                    labelDiv.textContent = month;
+                    labelEl.appendChild(labelDiv);
+                });
+
+                // Animate bars in
+                requestAnimationFrame(() => {
+                    document.querySelectorAll('.bar-fill').forEach(bar => {
+                        const h = bar.getAttribute('data-height');
+                        bar.style.height = `${h}%`;
+                    });
+                });
+            }
+
+            // ── AI MENTOR TERMINAL ────────────────────────────────────
+            // Handled by enterprise.js Anti-Fraud Sentinel Core (initAntifraudSentinel)
+            // The enterprise engine replaces the send button via cloneNode and wraps
+            // all inputs with the cognitive fraud pattern scanner before dispatching.
+        });
+
+        // ── GIG APPLY HANDLER ─────────────────────────────────────────
+        function handleGigApply(btn, gigTitle) {
+            btn.textContent = '✓ Өтінім жіберілді';
+            btn.disabled = true;
+            btn.classList.remove('bg-matte-orange', 'hover:bg-orange-500');
+            btn.classList.add('bg-emerald-700', 'text-white');
+
+            const toast    = document.getElementById('gig-toast');
+            const toastMsg = document.getElementById('gig-toast-msg');
+            if (toast && toastMsg) {
+                toastMsg.textContent = `"${gigTitle}" — өтініміңіз сәтті жіберілді!`;
+                toast.classList.remove('opacity-0', 'translate-y-4');
+                toast.classList.add('opacity-100', 'translate-y-0');
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'translate-y-4');
+                }, 3500);
+            }
+        }
+    </script>
+</body>
+</html>

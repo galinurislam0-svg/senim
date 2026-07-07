@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="kk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENIM — Safe Youth Freelance Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'matte-orange': '#E66E38',
+                        'matte-dark': '#121214',
+                        'matte-bg': '#0B0B0C'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body class="bg-[#0B0B0C] text-white overflow-x-hidden">
+
+    <!-- SCREEN 1: THE MAJESTIC BRAND INTERFACE (MONOLITH HERO) -->
+    <section class="h-screen w-full scroll-snap-align-start relative flex flex-col justify-between items-center overflow-hidden px-12 py-12 text-white bg-[#0B0B0C]" style="scroll-snap-align: start;">
+        <div></div> <!-- Spacer -->
+
+        <div class="text-center max-w-4xl space-y-8">
+            <h1 class="text-[18vw] font-black tracking-[-0.07em] text-matte-orange font-mono select-none leading-none drop-shadow-[0_20px_60px_rgba(230,110,56,0.35)]">
+                SENIM
+            </h1>
+            <p class="text-slate-400 text-lg md:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
+                14-22 жас аралығындағы жастарға арналған қауіпсіз, заңды және AI-мен қорғалған алғашқы цифрлық фриланс экожүйесі. Біліміңді табысқа айналдыр.
+            </p>
+            <div class="pt-4">
+                <a href="#matrix" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-matte-orange transition-colors">
+                    Төмен айналдырыңыз <span class="animate-bounce">↓</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Anchor telemetry banner -->
+        <div class="w-full max-w-5xl bg-matte-dark/60 border border-slate-900 px-6 py-4 rounded-2xl text-xs font-mono text-slate-400 flex flex-wrap justify-between gap-4">
+            <div>[SYSTEM CORE RUNNING]: senim_sec_core.sh</div>
+            <div class="flex gap-6">
+                <span>Статус: <span class="text-matte-orange font-bold">БЕЛСЕНДІ</span></span>
+                <span>Бақылауда: <span class="text-white">2,481 жас маман</span></span>
+                <span>Escrow кепілдік қоры: <span class="text-white">8.42M ₸</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREEN 2: THE HIGH-DENSITY KNOWLEDGE MATRIX (4-BENTO BBOX HUB) -->
+    <section id="matrix" class="h-screen w-full scroll-snap-align-start relative flex flex-col justify-center items-center overflow-hidden px-12 py-8 text-white bg-[#0B0B0C]" style="scroll-snap-align: start;">
+        <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 h-[85vh]">
+            
+            <!-- BOX A: Танымал Бағыттар -->
+            <div class="bg-matte-dark/40 border border-matte-orange-12 rounded-3xl p-6 flex flex-col justify-between hover:border-matte-orange/60 transition-all duration-300 relative group">
+                <div>
+                    <h3 class="text-xs font-mono text-matte-orange uppercase tracking-wider mb-2">ТАБЫСТЫҢ БАСТАУЫ</h3>
+                    <h4 class="text-lg font-bold text-white mb-4">Танымал Бағыттар</h4>
+                    <div class="space-y-3 overflow-y-auto max-h-[22vh] pr-2">
+                        <div>
+                            <span class="text-xs text-slate-500 font-mono block mb-1">💻 Бағдарламалау:</span>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="micro-pill">Web Dev</span>
+                                <span class="micro-pill">Python</span>
+                                <span class="micro-pill">React</span>
+                                <span class="micro-pill">AI & ML</span>
+                                <span class="micro-pill">JavaScript</span>
+                                <span class="micro-pill">Git</span>
+                                <span class="micro-pill">Docker</span>
+                                <span class="micro-pill">Go</span>
+                                <span class="micro-pill">Rust</span>
+                                <span class="micro-pill">C++</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-mono block mb-1">🎨 Дизайн & UI/UX:</span>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="micro-pill">UI Design</span>
+                                <span class="micro-pill">UX Design</span>
+                                <span class="micro-pill">Figma</span>
+                                <span class="micro-pill">3D Animation</span>
+                                <span class="micro-pill">Логотиптер</span>
+                                <span class="micro-pill">Моушн-графика</span>
+                                <span class="micro-pill">Blender</span>
+                                <span class="micro-pill">Webflow</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-mono block mb-1">📢 Цифрлық Маркетинг:</span>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="micro-pill">SMM</span>
+                                <span class="micro-pill">SEO</span>
+                                <span class="micro-pill">Контент маркетинг</span>
+                                <span class="micro-pill">Google Ads</span>
+                                <span class="micro-pill">Таргет</span>
+                                <span class="micro-pill">TikTok Ads</span>
+                                <span class="micro-pill">Growth Hacking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <a href="categories.html" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 group-hover:border-matte-orange group-hover:text-matte-orange transition-all duration-300">
+                        →
+                    </a>
+                </div>
+            </div>
+
+            <!-- BOX B: Заңдылық пен Қауіпсіздік Хабы -->
+            <div class="bg-matte-dark/40 border border-matte-orange-12 rounded-3xl p-6 flex flex-col justify-between hover:border-matte-orange/60 transition-all duration-300 relative group">
+                <div>
+                    <h3 class="text-xs font-mono text-matte-orange uppercase tracking-wider mb-2">ЗАНДЫЛЫҚ ПЕН ҚАУІПСІЗДІК ХАБЫ</h3>
+                    <h4 class="text-lg font-bold text-white mb-3">Құқықтық қорғаныс тетіктері</h4>
+                    <div class="space-y-4 text-xs">
+                        <div id="click-junior" class="border-l-2 border-matte-orange/50 pl-3 cursor-pointer hover:bg-slate-900/40 p-2 rounded-xl transition-all duration-300">
+                            <span class="font-bold text-white block">SENIM JUNIOR (14-17 ЖАС)</span>
+                            <span class="text-slate-400">100% Заңды, ата-аналық бақылау мен ақылды Escrow, ҚР Еңбек Кодексінің 31-бабына толық сәйкес.</span>
+                            <span class="text-matte-orange/80 block font-mono mt-1">SMS: +7 (707) ***-**72 [КЕЛІСІЛДІ]</span>
+                        </div>
+                        <div id="click-pro" class="border-l-2 border-slate-800 pl-3 cursor-pointer hover:bg-slate-900/40 p-2 rounded-xl transition-all duration-300">
+                            <span class="font-bold text-white block">SENIM PRO (18-22 ЖАС)</span>
+                            <span class="text-slate-400">Толық дербестік, авто-салық 1%. Табыс: 182,500 ₸ | Салық: 1,825 ₸.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <a href="safety.html" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 group-hover:border-matte-orange group-hover:text-matte-orange transition-all duration-300">
+                        →
+                    </a>
+                </div>
+            </div>
+
+            <!-- BOX C: Меріт-Деңгейлер және Даму Картасы -->
+            <div class="bg-matte-dark/40 border border-matte-orange-12 rounded-3xl p-6 flex flex-col justify-between hover:border-matte-orange/60 transition-all duration-300 relative group">
+                <div>
+                    <h3 class="text-xs font-mono text-matte-orange uppercase tracking-wider mb-2">МЕРИТ-ДЕҢГЕЙЛЕР ЖӘНЕ ДАМУ КАРТАСЫ</h3>
+                    <h4 class="text-lg font-bold text-white mb-3">Skill-Based Merit Levels</h4>
+                    <div class="space-y-3 text-xs">
+                        <div id="click-lvl-1" class="flex justify-between items-start gap-4 cursor-pointer hover:bg-slate-900/40 p-2 rounded-xl transition-all duration-300">
+                            <div>
+                                <span class="font-bold text-white font-mono block">ДЕҢГЕЙ 1: Starter</span>
+                                <span class="text-slate-400">AI-тест және тексеру (Транскрипция, мәтін аудармасы, деректерді жинау)</span>
+                            </div>
+                        </div>
+                        <div id="click-lvl-2" class="flex justify-between items-start gap-4 cursor-pointer hover:bg-slate-900/40 p-2 rounded-xl transition-all duration-300">
+                            <div>
+                                <span class="font-bold text-white font-mono block">ДЕҢГЕЙ 2: Expert</span>
+                                <span class="text-slate-400">Видеомонтаж, UI/UX Дизайн, 3D Модельдеу</span>
+                            </div>
+                        </div>
+                        <div id="click-lvl-3" class="flex justify-between items-start gap-4 cursor-pointer hover:bg-slate-900/40 p-2 rounded-xl transition-all duration-300">
+                            <div>
+                                <span class="font-bold text-white font-mono block">ДЕҢГЕЙ 3: Elite</span>
+                                <span class="text-slate-400">Full-stack әзірлеу, SaaS Құру, Дерекқор архитектурасы</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <a href="merit.html" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 group-hover:border-matte-orange group-hover:text-matte-orange transition-all duration-300">
+                        →
+                    </a>
+                </div>
+            </div>
+
+            <!-- BOX D: Triple Cognitive AI Қорғанысы -->
+            <div class="bg-matte-dark/40 border border-matte-orange-12 rounded-3xl p-6 flex flex-col justify-between hover:border-matte-orange/60 transition-all duration-300 relative group">
+                <div>
+                    <h3 class="text-xs font-mono text-matte-orange uppercase tracking-wider mb-2">TRIPLE COGNITIVE AI ҚОРҒАНЫСЫ</h3>
+                    <h4 class="text-lg font-bold text-white mb-3">Қауіпсіздік мониторингі</h4>
+                    <div class="space-y-2 text-[11px] font-mono">
+                        <div id="click-nlp" class="bg-black/60 p-2.5 rounded-lg border border-slate-900 cursor-pointer hover:border-matte-orange/40 transition-colors">
+                            <span class="text-rose-400">🤖 NLP Тапсырма Сүзгісі:</span>
+                            <div class="text-slate-400 mt-1">БҰҒАТТАЛДЫ: "...қоймаға келіп жәшіктерді тасу керек..." [Сүзгі: Оффлайн қауіп]</div>
+                        </div>
+                        <div id="click-chat-guard" class="bg-black/60 p-2.5 rounded-lg border border-slate-900 cursor-pointer hover:border-matte-orange/40 transition-colors">
+                            <span class="text-amber-400">🛡️ Escrow Чат Күзетшісі:</span>
+                            <div class="text-slate-400 mt-1">ФИШИНГТІ БӨГЕУ: "...Kaspi-ге тікелей жіберейін..." >> [Сыртқы сілтемелер шектелді]</div>
+                        </div>
+                        <div id="click-copilot" class="bg-black/60 p-2.5 rounded-lg border border-slate-900 cursor-pointer hover:border-matte-orange/40 transition-colors text-teal-400">
+                            <span>💡 Екі жақты AI Көмекшісі:</span>
+                            <div class="text-slate-500 mt-1">function buildCleanDesign() { return "CSS Grid"; }</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <a href="ai-protection.html" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 group-hover:border-matte-orange group-hover:text-matte-orange transition-all duration-300">
+                        →
+                    </a>
+                </div>
+            </div>
+
+        <!-- Skill Info Modal Overlay -->
+        <div id="skill-modal" class="absolute inset-0 z-40 hidden items-center justify-center bg-black/90 backdrop-blur-md transition-opacity duration-300 opacity-0 px-6">
+            <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 border border-matte-orange-12 relative shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300">
+                <!-- Close Button -->
+                <button id="skill-modal-close" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors text-2xl font-mono">
+                    ×
+                </button>
+                <div id="skill-modal-body" class="space-y-6">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Telemetry Modal Overlay -->
+        <div id="legal-telemetry-modal" class="absolute inset-0 z-40 hidden items-center justify-center bg-black/90 backdrop-blur-md transition-opacity duration-300 opacity-0 px-6">
+            <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 border border-matte-orange-12 relative shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300">
+                <button id="legal-modal-close" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors text-2xl font-mono">×</button>
+                <div id="legal-modal-body" class="space-y-6"></div>
+            </div>
+        </div>
+
+        <!-- Merit Tracker Modal Overlay -->
+        <div id="merit-tracker-modal" class="absolute inset-0 z-40 hidden items-center justify-center bg-black/90 backdrop-blur-md transition-opacity duration-300 opacity-0 px-6">
+            <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 border border-matte-orange-12 relative shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300">
+                <button id="merit-modal-close" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors text-2xl font-mono">×</button>
+                <div id="merit-modal-body" class="space-y-6"></div>
+            </div>
+        </div>
+
+        <!-- AI Console Modal Overlay -->
+        <div id="ai-console-modal" class="absolute inset-0 z-40 hidden items-center justify-center bg-black/90 backdrop-blur-md transition-opacity duration-300 opacity-0 px-6">
+            <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 border border-matte-orange-12 relative shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300">
+                <button id="ai-modal-close" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors text-2xl font-mono">×</button>
+                <div id="ai-modal-body" class="space-y-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREEN 3: STATE-OF-THE-ART ELITE ONBOARDING ENGINE -->
+    <section id="onboarding" class="h-screen w-full scroll-snap-align-start relative flex flex-col justify-center items-center overflow-hidden px-12 text-white bg-[#0B0B0C]" style="scroll-snap-align: start;">
+        <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
+            <!-- LEFT COMPONENT: Youth Registration -->
+            <div class="bg-matte-dark/40 border border-slate-900 rounded-3xl p-8 relative">
+                <div class="inline-block bg-slate-900/60 border border-slate-800 text-slate-300 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider mb-6">
+                    👦 Жастар үшін (14-22 жас)
+                </div>
+                <h3 class="text-2xl font-bold font-mono mb-6">Жастар Тіркелу Жүйесі</h3>
+                <form id="youth-reg-form" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Толық аты-жөні</label>
+                        <input type="text" id="youth-name-input" required placeholder="Есіміңіз" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Жасыңыз</label>
+                        <input type="number" id="youth-age-gate" required placeholder="Мысалы: 16" min="14" max="99" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Электрондық пошта (Email)</label>
+                        <input type="email" required placeholder="email@example.com" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Құпия сөз</label>
+                        <input type="password" required placeholder="••••••••" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+
+                    <!-- Parental Consent SMS Module -->
+                    <div id="parental-sms-module" class="hidden opacity-0 transform translate-y-2 transition-all duration-500 mt-4 p-4 border border-dashed border-matte-orange/30 bg-matte-orange/5 rounded-lg">
+                        <label class="block text-xs font-mono text-slate-300 mb-1">Ата-ананың телефон нөмірі (SMS растау үшін)</label>
+                        <input type="tel" id="parent-phone" placeholder="+7 (707) 123-45-67" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                        <span class="block text-[10px] text-matte-orange mt-2">⚠️ Жүйе белсенді: ҚР Еңбек Кодексінің 31-бабы бойынша қорғаншының растау коды міндетті.</span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- RIGHT COMPONENT: Business Partnership -->
+            <div class="bg-matte-dark/40 border border-slate-900 rounded-3xl p-8 relative">
+                <div class="inline-block bg-slate-900/60 border border-slate-800 text-slate-300 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider mb-6">
+                    💼 Бизнес үшін (B2B Серіктестер)
+                </div>
+                <h3 class="text-2xl font-bold font-mono mb-6">Бизнес Серіктестік (B2B)</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Компания атауы</label>
+                        <input type="text" required placeholder="ЖШС Атауы" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">БИН (BIN)</label>
+                        <input type="text" required placeholder="12 таңбалы нөмір" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Корпоративтік байланыс нөмірі</label>
+                        <input type="tel" required placeholder="+7 (777) 123-45-67" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Email</label>
+                        <input type="email" required placeholder="b2b@company.kz" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-500 mb-1">Құпия сөз</label>
+                        <input type="password" required placeholder="••••••••" class="w-full matte-input rounded-xl px-4 py-3 text-sm">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Global Action Matrix Button -->
+        <button id="btn-submit-onboarding" class="w-full max-w-6xl mt-8 bg-matte-orange hover:bg-[#ff854d] text-[#0B0B0C] font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-[0_0_30px_rgba(230,110,56,0.2)]">
+            Тіркелуді аяқтау және Платформаны іске қосу
+        </button>
+    </section>
+
+    <!-- Script loading -->
+    <script src="js/security.js"></script>
+    <script src="js/escrow.js"></script>
+    <script src="js/merit.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
