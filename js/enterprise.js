@@ -350,7 +350,21 @@ var FRAUD_SENTINEL_PATTERNS = [
     /накт/i
 ];
 
+function escHtml(v) {
+    return String(v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; });
+}
+
+// Негізгі талдау js/security.js қозғалтқышында (басты беттегі «Сенім сүзгісі»).
+// Ол жүктелмесе ғана төмендегі ескі тізім қолданылады.
 function runFraudSentinelScan(message) {
+    if (window.AISecurity && window.AISecurity.analyze) {
+        var r = window.AISecurity.analyze(message);
+        if (r.verdict !== 'SAFE') {
+            var first = r.reasons[0];
+            return { violated: true, matchedPattern: first.label + ': ' + first.matches.join(', '), score: r.score };
+        }
+        return { violated: false, matchedPattern: null };
+    }
     for (var i = 0; i < FRAUD_SENTINEL_PATTERNS.length; i++) {
         var match = message.match(FRAUD_SENTINEL_PATTERNS[i]);
         if (match) { return { violated: true, matchedPattern: match[0] }; }
@@ -411,7 +425,7 @@ function triggerFraudAlert(originalMsg, matchedPhrase) {
         '⛔ [CRITICAL SHIELD WARNING - CODE 403]: Off-platform solicitation attempt intercepted.',
         '</div>',
         '<div style="color:#fca5a5;font-size:9px;">[TELEMETRY]: User communications isolated. Security protocols active.</div>',
-        '<div style="color:#f87171;font-size:9px;margin-top:2px;">[PATTERN MATCH]: "<span style="background:rgba(239,68,68,0.25);padding:0 3px;border-radius:3px;">' + matchedPhrase + '</span>"</div>',
+        '<div style="color:#f87171;font-size:9px;margin-top:2px;">[PATTERN MATCH]: "<span style="background:rgba(239,68,68,0.25);padding:0 3px;border-radius:3px;">' + escHtml(matchedPhrase) + '</span>"</div>',
         '<div style="color:#6b7280;font-size:8px;margin-top:4px;">[CASE ID]: SENIM-FRAUD-' + Date.now() + ' · ' + new Date().toLocaleTimeString('kk-KZ') + '</div>'
     ].join('');
     mentorConsole.appendChild(alertBlock);
@@ -434,7 +448,7 @@ function dispatchSafeMentorMessage(text, mentorInput) {
         def:      'Бұл тамаша сұрақ! Нақты кодпен жауап беру үшін толығырақ жаза аласыз ба?',
         useState: 'useState – React-тағы хук. `const [count, setCount] = useState(0);` деп жариялап, setCount(count + 1) арқылы күйді жаңартасыз.',
         grid:     'CSS Grid үшін: `display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;` – адаптивті тор.',
-        python:   'Python-да функция: `def calculate(x): return x * 0.01` – 1% салықты есептейтін функция.',
+        python:   'Python-да функция: `def calculate(x): return x * 0.04` – 4% салықты есептейтін функция.',
         figma:    'Figma-да Auto Layout – элементтерді топтастырып, padding/gap арқылы икемді компоненттер жасайды.'
     };
     var lower = text.toLowerCase();
@@ -618,11 +632,18 @@ function hideSVGTooltip() {
 // ─────────────────────────────────────────────────────────────────────
 
 var INVOICE_LEDGER_DATA = [
-    { id:'INV-SENIM-2026-0041', txHash:'0x4f8a3c...e9d21b', project:'Figma макетін React лэндингіне айналдыру',    client:'SENIM B2B · #C-0019', amount:85000,  tax:850,  net:84150,  date:'2026-06-28', compliance:'ҚР Еңбек Кодексінің 31-бабы', status:'RELEASED', statusColor:'#34d399' },
-    { id:'INV-SENIM-2026-0039', txHash:'0x7c2e91...b34f08', project:'SMM мазмұн жоспары (3 ай)',                  client:'SENIM B2B · #C-0031', amount:45000,  tax:450,  net:44550,  date:'2026-06-15', compliance:'ҚР Еңбек Кодексінің 31-бабы', status:'RELEASED', statusColor:'#34d399' },
-    { id:'INV-SENIM-2026-0035', txHash:'0x1a9d44...c78e55', project:'Мобильді қосымшаға арналған UI дизайн жүйесі', client:'SENIM B2B · #C-0047', amount:60000,  tax:600,  net:59400,  date:'2026-06-02', compliance:'ҚР Еңбек Кодексінің 31-бабы', status:'RELEASED', statusColor:'#34d399' },
-    { id:'INV-SENIM-2026-0028', txHash:'0x9b1f73...a20c34', project:'Python деректерін талдайтын скрипт',          client:'SENIM B2B · #C-0022', amount:120000, tax:1200, net:118800, date:'2026-05-18', compliance:'ҚР Еңбек Кодексінің 31-бабы', status:'ESCROW',   statusColor:'#f59e0b' }
+    { id:'INV-SENIM-2026-0041', txHash:'0x4f8a3c...e9d21b', project:'Figma макетін React лэндингіне айналдыру',    client:'SENIM B2B · #C-0019', amount:85000,  date:'2026-06-28', compliance:'ҚР Салық кодексі · 4%', status:'RELEASED', statusColor:'#34d399' },
+    { id:'INV-SENIM-2026-0039', txHash:'0x7c2e91...b34f08', project:'SMM мазмұн жоспары (3 ай)',                  client:'SENIM B2B · #C-0031', amount:45000,  date:'2026-06-15', compliance:'ҚР Салық кодексі · 4%', status:'RELEASED', statusColor:'#34d399' },
+    { id:'INV-SENIM-2026-0035', txHash:'0x1a9d44...c78e55', project:'Мобильді қосымшаға арналған UI дизайн жүйесі', client:'SENIM B2B · #C-0047', amount:60000,  date:'2026-06-02', compliance:'ҚР Салық кодексі · 4%', status:'RELEASED', statusColor:'#34d399' },
+    { id:'INV-SENIM-2026-0028', txHash:'0x9b1f73...a20c34', project:'Python деректерін талдайтын скрипт',          client:'SENIM B2B · #C-0022', amount:120000, date:'2026-05-18', compliance:'ҚР Салық кодексі · 4%', status:'ESCROW',   statusColor:'#f59e0b' }
 ];
+
+// Салық (4%) пен комиссия (10%) js/escrow.js конфигінен есептеледі.
+INVOICE_LEDGER_DATA.forEach(function(inv){
+    var tx = window.EscrowCore ? window.EscrowCore.calculateTransaction(inv.amount)
+        : { tax: inv.amount * 0.04, commission: inv.amount * 0.10, netPayout: inv.amount * 0.86 };
+    inv.tax = tx.tax; inv.fee = tx.commission; inv.net = tx.netPayout;
+});
 
 function injectInvoiceLedger() {
     var financeSection = document.getElementById('finance');
@@ -743,11 +764,11 @@ function downloadInvoicePDF(id, project, amount, tax, net, txHash, date, complia
     var printWin    = window.open('', '_blank', 'width=800,height=700');
     printWin.document.write('<!DOCTYPE html><html lang="kk"><head><meta charset="UTF-8"><title>SENIM Invoice · ' + id + '</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#fff;font-family:\'Courier New\',Courier,monospace;color:#111;padding:48px;}.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:24px;border-bottom:2px solid #E66E38;}.brand{font-size:28px;font-weight:900;color:#E66E38;letter-spacing:-0.02em;}.brand-sub{font-size:9px;color:#999;letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;}.inv-title{text-align:right;}.inv-title h1{font-size:22px;font-weight:900;color:#111;letter-spacing:0.05em;}.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;}.meta-block h4{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:#999;margin-bottom:6px;}.meta-block p{font-size:12px;color:#222;font-weight:700;line-height:1.7;}table{width:100%;border-collapse:collapse;margin-bottom:24px;}th{border-bottom:2px solid #E66E38;padding:10px 12px;text-align:left;font-size:9px;color:#999;text-transform:uppercase;letter-spacing:0.12em;}td{padding:12px;border-bottom:1px solid #f0f0f0;font-size:12px;color:#333;}.right{text-align:right;font-weight:700;}.orange{color:#E66E38;}.green{color:#059669;font-weight:900;}.sum-box{background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;padding:20px 24px;margin-bottom:24px;}.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #f0f0f0;}.sum-row:last-child{border-bottom:none;font-size:16px;font-weight:900;}.comp{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:10px;color:#166534;line-height:1.8;}.tx-box{background:#1a1a1c;border-radius:8px;padding:14px 18px;margin-bottom:32px;font-size:10px;color:#64748b;line-height:1.8;}.tx-box span{color:#34d399;font-weight:700;}.footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e5e7eb;padding-top:20px;}.footer p{font-size:8px;color:#aaa;}.seal{width:72px;height:72px;border:3px solid #E66E38;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#E66E38;font-weight:900;text-align:center;letter-spacing:0.05em;text-transform:uppercase;}</style></head><body>');
     printWin.document.write('<div class="hdr"><div><div class="brand">SENIM</div><div class="brand-sub">Platform · Ресми Шот-Фактура</div></div><div class="inv-title"><h1>INVOICE</h1><p>' + id + '</p><p style="margin-top:4px;font-size:11px;color:#E66E38;">' + date + '</p></div></div>');
-    printWin.document.write('<div class="meta-grid"><div class="meta-block"><h4>Орындаушы</h4><p>' + userName + '<br>ЖК · SENIM Verified Freelancer<br>Merit Level 2 · ID: SNM-USR-8821</p></div><div class="meta-block"><h4>Тапсырыс беруші</h4><p>SENIM Platform B2B<br>ҚР, Алматы қ., Абай д-лы 150А<br>БСН: 201840023881</p></div></div>');
-    printWin.document.write('<table><thead><tr><th>Қызмет / Жоба</th><th style="text-align:right;">Жалпы сома</th><th style="text-align:right;">ЖК салығы (1%)</th><th style="text-align:right;">Таза табыс</th></tr></thead><tbody><tr><td>' + project + '</td><td class="right">' + amount.toLocaleString('ru-KZ') + ' ₸</td><td class="right orange">' + tax.toLocaleString('ru-KZ') + ' ₸</td><td class="right green">' + net.toLocaleString('ru-KZ') + ' ₸</td></tr></tbody></table>');
-    printWin.document.write('<div class="sum-box"><div class="sum-row"><span style="color:#666;">Жалпы сома:</span><span style="font-weight:700;">' + amount.toLocaleString('ru-KZ') + ' ₸</span></div><div class="sum-row"><span style="color:#666;">Жеке кәсіпкер салығы (1%):</span><span class="orange">- ' + tax.toLocaleString('ru-KZ') + ' ₸</span></div><div class="sum-row"><span style="color:#666;">Таза төлем:</span><span class="green">' + net.toLocaleString('ru-KZ') + ' ₸</span></div></div>');
+    printWin.document.write('<div class="meta-grid"><div class="meta-block"><h4>Орындаушы</h4><p>' + escHtml(userName) + '<br>ЖК · SENIM Verified Freelancer<br>Merit Level 2 · ID: SNM-USR-8821</p></div><div class="meta-block"><h4>Тапсырыс беруші</h4><p>SENIM Platform B2B<br>ҚР, Алматы қ., Абай д-лы 150А<br>БСН: 201840023881</p></div></div>');
+    printWin.document.write('<table><thead><tr><th>Қызмет / Жоба</th><th style="text-align:right;">Жалпы сома</th><th style="text-align:right;">Салық (4%)</th><th style="text-align:right;">Таза табыс</th></tr></thead><tbody><tr><td>' + escHtml(project) + '</td><td class="right">' + amount.toLocaleString('ru-KZ') + ' ₸</td><td class="right orange">' + tax.toLocaleString('ru-KZ') + ' ₸</td><td class="right green">' + net.toLocaleString('ru-KZ') + ' ₸</td></tr></tbody></table>');
+    printWin.document.write('<div class="sum-box"><div class="sum-row"><span style="color:#666;">Жалпы сома:</span><span style="font-weight:700;">' + amount.toLocaleString('ru-KZ') + ' ₸</span></div><div class="sum-row"><span style="color:#666;">Салық, платформа ұстаған (4%):</span><span class="orange">- ' + tax.toLocaleString('ru-KZ') + ' ₸</span></div><div class="sum-row"><span style="color:#666;">Таза төлем:</span><span class="green">' + net.toLocaleString('ru-KZ') + ' ₸</span></div></div>');
     printWin.document.write('<div class="comp"><strong>Заңды сәйкестік:</strong> ' + compliance + '<br>Осы шот-фактура ҚР Еңбек Кодексінің 31-бабына және «Электронды құжат және электронды цифрлық қолтаңба туралы» Заңының талаптарына толық сәйкес келеді. Платформа комиссиясы SENIM Smart Escrow Engine арқылы автоматты түрде есептелген.</div>');
-    printWin.document.write('<div class="tx-box"><p>Blockchain TX Hash: <span>' + txHash + '</span></p><p>Gateway: <span>SENIM Escrow Smart Contract v3.1 · Halyk OpenAPI</span></p><p>Status: <span>SETTLED · VERIFIED</span></p><p>Timestamp: <span>' + new Date().toISOString() + '</span></p></div>');
+    printWin.document.write('<div class="tx-box"><p>Транзакция ID: <span>' + txHash + '</span></p><p>Gateway: <span>SENIM Escrow Smart Contract v3.1 · Halyk OpenAPI</span></p><p>Status: <span>SETTLED · VERIFIED</span></p><p>Timestamp: <span>' + new Date().toISOString() + '</span></p></div>');
     printWin.document.write('<div class="footer"><div><p>SENIM Platform · senim.kz</p><p style="margin-top:4px;">© 2026 SENIM · Барлық транзакциялар шифрланған</p></div><div class="seal">SENIM<br>VERIFIED<br>✓</div></div>');
     printWin.document.write('<script>window.onload=function(){window.print();};<\/script></body></html>');
     printWin.document.close();

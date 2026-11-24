@@ -1,0 +1,13 @@
+{
+  "name": "senim",
+  "private": true,
+  "description": "SENIM — жастарға арналған қауіпсіз фриланс платформасы",
+  "scripts": {
+    "build:css": "tailwindcss -i css/tailwind.input.css -o css/tw.css --minify",
+    "dev": "python3 -m http.server 8080",
+    "test": "node tests/run.js"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

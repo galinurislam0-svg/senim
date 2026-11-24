@@ -5,23 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SENIM — Жас Маман Жұмыс Кеңістігі</title>
     <meta name="description" content="SENIM фриланс платформасының кәсіби жас маман жұмыс кеңістігі. Escrow тапсырмалары, AI Mentor, табыс аналитикасы.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'matte-orange': '#E66E38',
-                        'matte-dark':   '#121214',
-                        'matte-bg':     '#0B0B0C'
-                    },
-                    fontFamily: {
-                        mono: ['Courier New', 'Courier', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/tw.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
         /* Page-level scroll for dashboard — override snap */
@@ -339,17 +324,18 @@
                         <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Автоматты есептеу</p>
                         <h2 class="text-xl font-black font-mono text-white mt-1">Салық Есеп Журналы</h2>
                     </div>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold">1% ЖК Режимі</span>
+                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold">4% · платформа ұстайды</span>
                 </div>
 
                 <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl overflow-hidden">
                     <div class="overflow-x-auto">
-                        <table class="w-full text-xs font-mono">
+                        <table class="w-full min-w-[600px] text-xs font-mono whitespace-nowrap">
                             <thead>
                                 <tr class="border-b border-slate-900 text-slate-500 uppercase tracking-wider text-[10px]">
                                     <th class="px-5 py-3 text-left">Жоба</th>
                                     <th class="px-5 py-3 text-right">Жалпы төлем</th>
-                                    <th class="px-5 py-3 text-right">Салық (1%)</th>
+                                    <th class="px-5 py-3 text-right">Комиссия (10%)</th>
+                                    <th class="px-5 py-3 text-right">Салық (4%)</th>
                                     <th class="px-5 py-3 text-right">Таза табыс</th>
                                     <th class="px-5 py-3 text-left">Статус</th>
                                 </tr>
@@ -357,32 +343,36 @@
                             <tbody>
                                 <tr class="ledger-row border-b border-slate-900/60">
                                     <td class="px-5 py-3 text-slate-300">Figma → React конверсия</td>
-                                    <td class="px-5 py-3 text-right text-white font-bold">85,000 ₸</td>
-                                    <td class="px-5 py-3 text-right text-matte-orange">850 ₸</td>
-                                    <td class="px-5 py-3 text-right text-emerald-400 font-bold">84,150 ₸</td>
+                                    <td class="px-5 py-3 text-right text-white font-bold">85 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-slate-400">8 500 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange">3 400 ₸</td>
+                                    <td class="px-5 py-3 text-right text-emerald-400 font-bold">73 100 ₸</td>
                                     <td class="px-5 py-3"><span class="escrow-badge">ЖІБЕРІЛДІ</span></td>
                                 </tr>
                                 <tr class="ledger-row border-b border-slate-900/60">
                                     <td class="px-5 py-3 text-slate-300">SMM мазмұн жоспары</td>
-                                    <td class="px-5 py-3 text-right text-white font-bold">45,000 ₸</td>
-                                    <td class="px-5 py-3 text-right text-matte-orange">450 ₸</td>
-                                    <td class="px-5 py-3 text-right text-emerald-400 font-bold">44,550 ₸</td>
+                                    <td class="px-5 py-3 text-right text-white font-bold">45 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-slate-400">4 500 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange">1 800 ₸</td>
+                                    <td class="px-5 py-3 text-right text-emerald-400 font-bold">38 700 ₸</td>
                                     <td class="px-5 py-3"><span class="escrow-badge">ЖІБЕРІЛДІ</span></td>
                                 </tr>
                                 <tr class="ledger-row border-b border-slate-900/60">
                                     <td class="px-5 py-3 text-slate-300">Python деректер скрипті</td>
-                                    <td class="px-5 py-3 text-right text-white font-bold">120,000 ₸</td>
-                                    <td class="px-5 py-3 text-right text-matte-orange">1,200 ₸</td>
-                                    <td class="px-5 py-3 text-right text-amber-400 font-bold">118,800 ₸</td>
+                                    <td class="px-5 py-3 text-right text-white font-bold">120 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-slate-400">12 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange">4 800 ₸</td>
+                                    <td class="px-5 py-3 text-right text-amber-400 font-bold">103 200 ₸</td>
                                     <td class="px-5 py-3">
                                         <span class="text-[10px] font-mono bg-amber-400/10 text-amber-400 px-2 py-0.5 rounded-full font-bold">ESCROW</span>
                                     </td>
                                 </tr>
                                 <tr class="border-t-2 border-slate-800">
                                     <td class="px-5 py-3 text-slate-500 font-bold uppercase tracking-wider text-[10px]">БАРЛЫҒЫ</td>
-                                    <td class="px-5 py-3 text-right text-white font-black">250,000 ₸</td>
-                                    <td class="px-5 py-3 text-right text-matte-orange font-black">2,500 ₸</td>
-                                    <td class="px-5 py-3 text-right text-emerald-400 font-black">247,500 ₸</td>
+                                    <td class="px-5 py-3 text-right text-white font-black">250 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-slate-400">25 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-matte-orange font-black">10 000 ₸</td>
+                                    <td class="px-5 py-3 text-right text-emerald-400 font-black">215 000 ₸</td>
                                     <td class="px-5 py-3"></td>
                                 </tr>
                             </tbody>
@@ -407,6 +397,8 @@
     <!-- DASHBOARD RUNTIME SCRIPT                                         -->
     <!-- ─────────────────────────────────────────────────────────────── -->
     <!-- ── ENTERPRISE ENGINE ──────────────────────────────────────────── -->
+    <script src="js/security.js"></script>
+    <script src="js/escrow.js"></script>
     <script src="js/enterprise.js"></script>
 
     <script>
@@ -416,7 +408,8 @@
 
             // Header greeting
             const greeting = document.getElementById('dashboard-greeting');
-            if (greeting) greeting.textContent = `Сәлеметсіз бе, ${activeSessionName.split(' ')[0]} 👋`;
+            const storedName = (() => { try { return localStorage.getItem('senim_user_name'); } catch (_) { return null; } })();
+            if (greeting) greeting.textContent = storedName ? `Сәлеметсіз бе, ${storedName.split(' ')[0]} 👋` : 'Сәлеметсіз бе 👋';
 
             // Profile name chip
             const profileNameEl = document.getElementById('user-profile-name');

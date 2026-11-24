@@ -1,21 +1,16 @@
 {
   "short_name": "SENIM",
-  "name": "SENIM - Safe Youth Freelance Platform",
+  "name": "SENIM — жастарға арналған қауіпсіз фриланс",
+  "description": "14–22 жастағы жастарға арналған қауіпсіз фриланс: escrow, ата-ана келісімі, алаяқтық сүзгісі.",
+  "lang": "kk",
   "icons": [
-    {
-      "src": "assets/icons/logo-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "assets/icons/logo-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
+    { "src": "assets/icons/logo.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "assets/icons/logo-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "assets/icons/logo-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
   ],
-  "start_url": "/index.html",
-  "background_color": "#020617",
-  "theme_color": "#10b981",
-  "display": "standalone",
-  "orientation": "portrait"
+  "start_url": "./index.html",
+  "scope": "./",
+  "background_color": "#0B0B0C",
+  "theme_color": "#0B0B0C",
+  "display": "standalone"
 }

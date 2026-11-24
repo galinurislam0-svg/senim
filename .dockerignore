@@ -1,0 +1,7 @@
+node_modules
+.git
+tests
+*.md
+package*.json
+tailwind.config.js
+css/tailwind.input.css

@@ -4,21 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SENIM — Заңдылық пен Қауіпсіздік Хабы</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'matte-orange': '#E66E38',
-                        'matte-dark': '#121214',
-                        'matte-bg': '#0B0B0C'
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/tw.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
         .perspective-container {
@@ -51,7 +38,7 @@
     <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 perspective-container">
 
         <!-- Panel 1: SENIM Junior Legal Protocol -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
             <div>
                 <div class="flex justify-between items-start mb-6">
                     <span class="text-4xl">🛡️</span>
@@ -77,7 +64,7 @@
         </div>
 
         <!-- Panel 2: SENIM Pro Open Banking & Taxes -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between h-[60vh]">
+        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
             <div>
                 <div class="flex justify-between items-start mb-6">
                     <span class="text-4xl">💼</span>
@@ -85,11 +72,11 @@
                 </div>
                 <h2 class="text-2xl font-bold font-mono text-white mb-4">SENIM Pro ережелері</h2>
                 <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    18-22 жас аралығындағы толық дербес мамандар үшін салық және заңды есептер толығымен автоматтандырылған. Платформа ҚР Салық заңнамасына сай 1% салықты автоматты түрде аударады.
+                    18-22 жас аралығындағы толық дербес мамандар үшін салық және заңды есептер толығымен автоматтандырылған. 2026 жылғы Салық кодексі бойынша платформа салық агенті болады: табыстың 4%-ын өзі ұстап, мемлекетке аударады.
                 </p>
                 <ul class="text-xs text-slate-300 space-y-2 list-disc pl-4 font-mono">
-                    <li>Ашық банкинг API желілеріне қосылған</li>
-                    <li>Шектеусіз жұмыс уақыты мен жоғары тарифтер</li>
+                    <li>Төлем тікелей өз картаңызға</li>
+                    <li>Айлық лимит: 300 АЕК (~1,3 млн ₸), жақындағанда ескерту</li>
                     <li>Автоматты түрде салық декларациясын толтыру</li>
                 </ul>
             </div>
@@ -97,7 +84,7 @@
             <div class="border-t border-slate-900 pt-6 space-y-3 font-mono text-xs">
                 <div class="flex justify-between">
                     <span class="text-slate-500">Салық мөлшерлемесі:</span>
-                    <span class="text-white font-bold">1% (Жеңілдетілген режим)</span>
+                    <span class="text-white font-bold">4% (өзін-өзі жұмыспен қамтығандар)</span>
                 </div>
             </div>
         </div>
