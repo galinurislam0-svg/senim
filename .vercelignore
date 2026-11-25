@@ -1,0 +1,7 @@
+node_modules
+tests
+css/tailwind.input.css
+tailwind.config.js
+Dockerfile
+docker-compose.yml
+.dockerignore
