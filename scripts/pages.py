@@ -13,7 +13,7 @@ NAV = [("categories", "Бағыттар"), ("merit", "Деңгейлер"), ("sa
 INK_FILTER = """<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="s"/><feComposite in="SourceGraphic" in2="s" operator="in"/></filter></svg>"""
 
 
-def page(slug, title, desc, h1, lead, body, nxt):
+def page(slug, title, desc, h1, lead, body, nxt, seal=None):
     links = "\n".join(
         f'        <li><a href="{s}"{" aria-current=\"page\"" if s == slug else ""}>{e(t)}</a></li>' for s, t in NAV)
     nxt_slug, nxt_title = nxt
@@ -62,6 +62,7 @@ def page(slug, title, desc, h1, lead, body, nxt):
       <nav class="crumbs" aria-label="Жол"><a href="/">Басты бет</a><span aria-hidden="true">/</span><span>{e(h1)}</span></nav>
       <h1 class="phead__title">{e(h1)}</h1>
       <p class="lead">{e(lead)}</p>
+      {f'<span class="stamp stamp--{seal[0]} phead__seal" aria-hidden="true">{e(seal[1])}</span>' if seal else ''}
     </div>
   </section>
 {body}
@@ -116,6 +117,7 @@ def rows(items):
 
 PAGES = {
     "categories": dict(
+        seal=('safe', 'ТЕК ЦИФРЛЫҚ'),
         title="Фриланс бағыттары · SENIM",
         desc="Бағдарламалау, дизайн, маркетинг, мәтін мен видео: SENIM-дегі жастарға арналған цифрлық бағыттар және бағдарлы бағалар.",
         h1="Фриланс бағыттары",
@@ -135,6 +137,7 @@ PAGES = {
         nxt=("merit", "Деңгейлер"),
     ),
     "merit": dict(
+        seal=('safe', 'ДАҒДЫ БОЙЫНША'),
         title="Меріт-деңгейлер · SENIM",
         desc="Starter, Expert, Elite: SENIM-де дағды өскен сайын жоба бюджеті 25 000-нан 500 000 теңгеге дейін өседі.",
         h1="Меріт-деңгейлер",
@@ -153,6 +156,7 @@ PAGES = {
         nxt=("safety", "Заңдылық пен қауіпсіздік"),
     ),
     "safety": dict(
+        seal=('safe', 'ЗАҢДЫ'),
         title="Заңдылық пен қауіпсіздік · SENIM",
         desc="SENIM Junior мен Pro ережелері: ата-ана келісімі, жұмыс уақыты шегі, 4% салықты платформа өзі ұстап, аударады.",
         h1="Заңдылық пен қауіпсіздік",
@@ -171,6 +175,7 @@ PAGES = {
         nxt=("ai-protection", "AI қорғаныс"),
     ),
     "ai-protection": dict(
+        seal=('review', 'ЕКІ ТЕКСЕРУ'),
         title="AI қорғаныс · SENIM",
         desc="Сенім сүзгісі қалай жұмыс істейді: ережелер қозғалтқышы, Gemini талдауы, чат күзетшісі және AI тәлімгер.",
         h1="Сүзгі қалай жұмыс істейді",

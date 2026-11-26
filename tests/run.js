@@ -10,7 +10,7 @@ const t = (name, fn) => { fn(); passed++; console.log('  ✓', name); };
 
 t('қалыпты тапсырма өтеді', () => {
   for (const s of ['Figma макетін React-ке айналдыру', 'Instagram посттарына мәтін жазу',
-                   'Доставка сайтына дизайн', 'Дропшиппинг дүкеніне SEO'])
+                   'Доставка сайтына дизайн', 'Дропшиппинг дүкеніне SEO', 'Telegram-бот: кезекке жазылу', 'Телеграм бот жасау керек'])
     assert.strictEqual(S.analyze(s).verdict, 'SAFE', s);
 });
 t('оффлайн жұмыс бұғатталады', () => assert.strictEqual(S.analyze('Қоймаға келіп жәшіктерді тасу керек').verdict, 'BLOCK'));

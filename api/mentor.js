@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
             blocked: true,
             verdict: check.verdict,
             reasons: check.reasons.map(r => ({ label: r.label, matches: r.matches })),
-            reply: 'Бұл хабарлама қауіпсіздік сүзгісінен өтпеді. Платформадан тыс төлем мен байланыс — алаяқтардың басты тәсілі.'
+            reply: 'Бұл хабарлама қауіпсіздік сүзгісінен өтпеді. Платформадан тыс төлем мен байланыс: алаяқтардың басты тәсілі.'
         });
     }
     if (!hasAI()) return send(res, 503, { error: 'AI кілті бапталмаған' });
