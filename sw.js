@@ -1,8 +1,8 @@
 // SENIM service worker: беттер желіден (жаңасы бірінші), статика кэштен.
-const CACHE = 'senim-v3';
+const CACHE = 'senim-v4';
 const ASSETS = [
   './', './index.html', './dashboard.html', './categories.html', './merit.html',
-  './safety.html', './ai-protection.html', './404.html',
+  './safety.html', './ai-protection.html', './404.html', './js/inner.js',
   './css/site.css', './css/fonts.css', './css/tw.css', './css/style.css',
   './assets/fonts/geologica-cyrillic.woff2', './assets/fonts/geologica-cyrillic-ext.woff2', './assets/fonts/geologica-latin.woff2',
   './assets/fonts/onest-cyrillic.woff2', './assets/fonts/onest-cyrillic-ext.woff2', './assets/fonts/onest-latin.woff2',

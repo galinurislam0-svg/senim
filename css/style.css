@@ -184,3 +184,19 @@ h1, h2, h3, .font-black { font-family: "Geologica", "Onest", sans-serif; letter-
 .text-slate-600, .text-slate-700, .text-slate-800, .text-gray-500, .text-gray-600 { color: #8b96a6 !important; }
 .skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: #E66E38; color: #0B0B0C; padding: 10px 16px; font-weight: 700; border-radius: 6px; text-decoration: none; }
 .skip:focus { top: 12px; }
+
+/* ═════ Кабинет: басты беттің жүйесіне жақындату (DESIGN.md) ═════ */
+body.dash { background: #0E0D0C !important; }
+.dash [class*="rounded-2xl"], .dash [class*="rounded-3xl"], .dash [class*="rounded-xl"] { border-radius: 4px !important; }
+.dash .font-mono { font-family: "Onest", sans-serif !important; }
+.dash h1, .dash h2, .dash h3 { font-family: "Geologica", sans-serif !important; letter-spacing: -0.02em; }
+.dash #sidebar a { position: relative; min-height: 36px; }
+.dash #sidebar nav a::after, .dash #sidebar > div > nav a::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; background: #E66E38; transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+.dash #sidebar a:hover::after { transform: scaleX(1); }
+.dash #sidebar a:hover { color: #F3EEE6 !important; }
+.dash button.bg-matte-orange, .dash button[onclick^="handleGigApply"] { transition: transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s, background-color .2s !important; box-shadow: 0 3px 0 #8F3E18; }
+.dash button[onclick^="handleGigApply"]:hover { background: #F3EEE6 !important; color: #0E0D0C !important; transform: translateY(2px); box-shadow: 0 1px 0 #8F3E18; }
+@view-transition { navigation: auto; }
+::view-transition-new(root) { animation: vt-in .6s cubic-bezier(.22,1,.36,1) both; }
+@keyframes vt-in { from { clip-path: circle(0% at 50% 45%); } to { clip-path: circle(140% at 50% 45%); } }
+@media (prefers-reduced-motion: reduce) { ::view-transition-new(root) { animation: none; } }

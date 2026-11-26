@@ -1,169 +1,141 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="kk" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фриланс бағыттары · SENIM</title>
-    <meta name="description" content="Бағдарламалау, дизайн, маркетинг, контент: SENIM-дегі жастарға арналған цифрлық бағыттар мен тарифтер.">
-    <link rel="canonical" href="https://senim-eight.vercel.app/categories">
-    <meta name="theme-color" content="#0E0D0C">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="SENIM">
-    <meta property="og:title" content="Фриланс бағыттары · SENIM">
-    <meta property="og:description" content="Бағдарламалау, дизайн, маркетинг, контент: SENIM-дегі жастарға арналған цифрлық бағыттар мен тарифтер.">
-    <meta property="og:url" content="https://senim-eight.vercel.app/categories">
-    <meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/tw.css">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* 3D Perspective card rotations */
-        .perspective-container {
-            perspective: 1000px;
-        }
-        .perspective-card {
-            transform: rotateX(8deg) rotateY(-4deg);
-            transition: transform 0.5s ease, border-color 0.5s ease;
-        }
-        .perspective-card:hover {
-            transform: rotateX(0deg) rotateY(0deg) translateY(-8px);
-            border-color: rgba(230, 110, 56, 0.8);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фриланс бағыттары · SENIM</title>
+<meta name="description" content="Бағдарламалау, дизайн, маркетинг, мәтін мен видео: SENIM-дегі жастарға арналған цифрлық бағыттар және бағдарлы бағалар.">
+<link rel="canonical" href="https://senim-eight.vercel.app/categories">
+<meta name="theme-color" content="#0E0D0C">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SENIM">
+<meta property="og:title" content="Фриланс бағыттары · SENIM">
+<meta property="og:description" content="Бағдарламалау, дизайн, маркетинг, мәтін мен видео: SENIM-дегі жастарға арналған цифрлық бағыттар және бағдарлы бағалар.">
+<meta property="og:url" content="https://senim-eight.vercel.app/categories">
+<meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preload" href="assets/fonts/geologica-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
-<body class="bg-[#0B0B0C] text-white min-h-screen font-sans px-6 py-16 md:px-12 relative overflow-x-hidden">
-    <a class="skip" href="#main">Негізгі мазмұнға өту</a>
+<body class="inner">
+<a class="skip" href="#main">Негізгі мазмұнға өту</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="s"/><feComposite in="SourceGraphic" in2="s" operator="in"/></filter></svg>
+<header class="nav is-solid" id="nav">
+  <div class="wrap nav__in">
+    <a class="nav__brand" href="/" aria-label="SENIM, басты бет">SENIM</a>
+    <nav aria-label="Бөлімдер">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="categories" aria-current="page">Бағыттар</a></li>
+        <li><a href="merit">Деңгейлер</a></li>
+        <li><a href="safety">Заңдылық</a></li>
+        <li><a href="ai-protection">AI қорғаныс</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--ink nav__cta" href="/#join">Тіркелу</a>
+    <button class="nav__menu" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Мәзір</button>
+  </div>
+</header>
 
-    <!-- Ambient background glows -->
-    <div class="fixed top-0 left-1/4 w-[400px] h-[400px] bg-matte-orange/5 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
-
-    <header class="max-w-6xl mx-auto mb-16 flex justify-between items-center">
-        <div>
-            <h1 class="text-3xl font-black font-mono tracking-tight text-white mb-2">ФРИЛАНС БАҒЫТТАРЫ</h1>
-            <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">SENIM Экожүйесінің нарықтық аналитикасы</p>
+<main id="main" tabindex="-1">
+  <section class="phead">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Жол"><a href="/">Басты бет</a><span aria-hidden="true">/</span><span>Фриланс бағыттары</span></nav>
+      <h1 class="phead__title">Фриланс бағыттары</h1>
+      <p class="lead">SENIM-де тек цифрлық жұмыс бар: компьютердің алдында, үйден, сабақтан кейін орындалатын тапсырмалар. Бағалар Junior маманға арналған бағдар, нақты бюджетті тапсырыс беруші қояды.</p>
+    </div>
+  </section>
+  <section class="prows">
+    <div class="wrap">
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Код</p>
+          <h2 class="prow__title">Бағдарламалау</h2>
         </div>
-        <a href="index.html" class="text-sm font-mono text-slate-400 hover:text-matte-orange transition-colors flex items-center gap-2">
-            ← Басты бетке қайту
-        </a>
-    </header>
-
-    <main id="main" class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 perspective-container">
-
-        <!-- Panel 1: Programming Core Matrix -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[65vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-4xl">💻</span>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Programming</span>
-                </div>
-                <h2 class="text-2xl font-bold font-mono text-white mb-4">Бағдарламалау</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Веб-қосымшалар, скрипттер, жасанды интеллект модульдері мен деректер қорын басқару жүйелерін әзірлеу саласы.
-                </p>
-
-                <!-- Tag Cloud -->
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="micro-pill">Web Dev</span>
-                    <span class="micro-pill">Python</span>
-                    <span class="micro-pill">React</span>
-                    <span class="micro-pill">AI</span>
-                    <span class="micro-pill">JavaScript</span>
-                    <span class="micro-pill">Git</span>
-                    <span class="micro-pill">Docker</span>
-                    <span class="micro-pill">Go</span>
-                    <span class="micro-pill">Rust</span>
-                    <span class="micro-pill">C++</span>
-                </div>
-            </div>
-
-            <!-- Market Analytics -->
-            <div class="border-t border-slate-900 pt-6 space-y-3 font-mono text-xs">
-                <div class="flex justify-between">
-                    <span class="text-slate-500">Орташа тариф (Junior):</span>
-                    <span class="text-white font-bold">15,000 ₸ - 45,000 ₸ / сағ</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-slate-500">Сұраныстың артуы:</span>
-                    <span class="text-emerald-400 font-bold">+28%</span>
-                </div>
-            </div>
+        <div class="prow__body">
+          <p>Лендинг беттер, Telegram-боттар, Python скрипттері, деректерді өңдеу. Тапсырманы Gemini деңгейге бөледі, сондықтан Starter маманға күрделі SaaS берілмейді.</p>
+          
+          <ul class="tags" aria-label="Дағдылар"><li>HTML/CSS</li><li>JavaScript</li><li>React</li><li>Python</li><li>Git</li><li>SQL</li></ul>
+          <dl class="pfacts"><div><dt>Бағдарлы баға</dt><dd>15 000-150 000 ₸ / жоба</dd></div><div><dt>Деңгей</dt><dd>Expert, Elite</dd></div></dl>
         </div>
-
-        <!-- Panel 2: Design & UI/UX Space -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[65vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-4xl">🎨</span>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Design & Motion</span>
-                </div>
-                <h2 class="text-2xl font-bold font-mono text-white mb-4">Дизайн & UI/UX</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Интерфейстер дизайны, логотиптер құру, 3D анимация мен брендинг жобаларын кәсіби деңгейде көрсету.
-                </p>
-
-                <!-- Tag Cloud -->
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="micro-pill">UI/UX Design</span>
-                    <span class="micro-pill">Figma</span>
-                    <span class="micro-pill">3D Animation</span>
-                    <span class="micro-pill">Blender</span>
-                    <span class="micro-pill">Webflow</span>
-                    <span class="micro-pill">Логотиптер</span>
-                </div>
-            </div>
-
-            <!-- Market Analytics -->
-            <div class="border-t border-slate-900 pt-6 space-y-3 font-mono text-xs">
-                <div class="flex justify-between">
-                    <span class="text-slate-500">Орташа тариф (Junior):</span>
-                    <span class="text-white font-bold">12,000 ₸ - 35,000 ₸ / жоба</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-slate-500">Сұраныстың артуы:</span>
-                    <span class="text-emerald-400 font-bold">+19%</span>
-                </div>
-            </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Көрініс</p>
+          <h2 class="prow__title">Дизайн және UI/UX</h2>
         </div>
-
-        <!-- Panel 3: Digital Marketing Hub -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[65vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-4xl">📢</span>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Marketing</span>
-                </div>
-                <h2 class="text-2xl font-bold font-mono text-white mb-4">Цифрлық Маркетинг</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Әлеуметтік желі жарнамасы, іздеу жүйелерін оңтайландыру (SEO), таргеттелген TikTok және Google Ads науқандары.
-                </p>
-
-                <!-- Tag Cloud -->
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="micro-pill">SMM</span>
-                    <span class="micro-pill">SEO</span>
-                    <span class="micro-pill">Target</span>
-                    <span class="micro-pill">Google Ads</span>
-                    <span class="micro-pill">Content Marketing</span>
-                    <span class="micro-pill">TikTok Ads</span>
-                </div>
-            </div>
-
-            <!-- Market Analytics -->
-            <div class="border-t border-slate-900 pt-6 space-y-3 font-mono text-xs">
-                <div class="flex justify-between">
-                    <span class="text-slate-500">Орташа тариф (Junior):</span>
-                    <span class="text-white font-bold">20,000 ₸ - 50,000 ₸ / ай</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-slate-500">Сұраныстың артуы:</span>
-                    <span class="text-emerald-400 font-bold">+22%</span>
-                </div>
-            </div>
+        <div class="prow__body">
+          <p>Instagram посттары, логотип, қосымша экрандары, презентация. Нәтиже Figma файлымен тапсырылады, авторлық құқық жоба толық төленгенде ғана беріледі.</p>
+          
+          <ul class="tags" aria-label="Дағдылар"><li>Figma</li><li>UI/UX</li><li>Логотип</li><li>Blender</li><li>Моушн</li></ul>
+          <dl class="pfacts"><div><dt>Бағдарлы баға</dt><dd>10 000-80 000 ₸ / жоба</dd></div><div><dt>Деңгей</dt><dd>Expert</dd></div></dl>
         </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Аудитория</p>
+          <h2 class="prow__title">Цифрлық маркетинг</h2>
+        </div>
+        <div class="prow__body">
+          <p>Контент-жоспар, SMM, сайт мәтіндерінің SEO-сы. Казино, ставка, вейп сияқты жасқа сай емес тапсырыс берушілерді сүзгі жарияламайды.</p>
+          
+          <ul class="tags" aria-label="Дағдылар"><li>SMM</li><li>SEO</li><li>Контент-жоспар</li><li>TikTok</li><li>Копирайтинг</li></ul>
+          <dl class="pfacts"><div><dt>Бағдарлы баға</dt><dd>20 000-60 000 ₸ / ай</dd></div><div><dt>Деңгей</dt><dd>Starter, Expert</dd></div></dl>
+        </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Тіл</p>
+          <h2 class="prow__title">Мәтін және аударма</h2>
+        </div>
+        <div class="prow__body">
+          <p>Қазақша, орысша, ағылшынша аударма, транскрипция, субтитр. Тіркелген күннен бастап қолжетімді бастапқы бағыт.</p>
+          
+          <ul class="tags" aria-label="Дағдылар"><li>Аударма</li><li>Транскрипция</li><li>Субтитр</li><li>Редакция</li></ul>
+          <dl class="pfacts"><div><dt>Бағдарлы баға</dt><dd>3 000-25 000 ₸ / жоба</dd></div><div><dt>Деңгей</dt><dd>Starter</dd></div></dl>
+        </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Кадр</p>
+          <h2 class="prow__title">Видео және монтаж</h2>
+        </div>
+        <div class="prow__body">
+          <p>Reels пен Shorts монтажы, YouTube роликтері, қарапайым анимация. Шикі материалды тапсырыс беруші платформа арқылы береді.</p>
+          
+          <ul class="tags" aria-label="Дағдылар"><li>CapCut</li><li>Premiere</li><li>After Effects</li><li>Субтитр</li></ul>
+          <dl class="pfacts"><div><dt>Бағдарлы баға</dt><dd>8 000-70 000 ₸ / жоба</dd></div><div><dt>Деңгей</dt><dd>Expert</dd></div></dl>
+        </div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="pnext">
+    <div class="wrap">
+      <a class="pnext__link" href="merit"><span class="doc__meta">Келесі бөлім</span><span class="pnext__title">Деңгейлер</span></a>
+    </div>
+  </section>
+</main>
 
-    </main>
-
+<footer class="foot">
+  <div class="wrap foot__in">
+    <nav aria-label="Төменгі мәзір" class="foot__nav">
+      <a href="/">Басты бет</a>
+      <a href="/#guard">Сүзгіні сынау</a>
+      <a href="dashboard">Демо кабинет</a>
+      <a href="https://github.com/galinurislam0-svg/senim" rel="noopener">GitHub</a>
+    </nav>
+    <p class="doc__meta">Хакатон прототипі. SMS шлюзі мен банк әлі қосылмаған.</p>
+  </div>
+  <p class="foot__word" aria-hidden="true">SENIM</p>
+</footer>
+<script src="js/inner.js" defer></script>
 </body>
 </html>

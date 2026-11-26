@@ -1,106 +1,128 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="kk" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI қорғаныс · SENIM</title>
-    <meta name="description" content="Тапсырма сүзгісі, чат күзетшісі және AI тәлімгер: SENIM жасөспірімдерді алаяқтықтан қалай қорғайды.">
-    <link rel="canonical" href="https://senim-eight.vercel.app/ai-protection">
-    <meta name="theme-color" content="#0E0D0C">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="SENIM">
-    <meta property="og:title" content="AI қорғаныс · SENIM">
-    <meta property="og:description" content="Тапсырма сүзгісі, чат күзетшісі және AI тәлімгер: SENIM жасөспірімдерді алаяқтықтан қалай қорғайды.">
-    <meta property="og:url" content="https://senim-eight.vercel.app/ai-protection">
-    <meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/tw.css">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .perspective-container {
-            perspective: 1000px;
-        }
-        .perspective-card {
-            transform: rotateX(6deg) rotateY(-3deg);
-            transition: transform 0.5s ease, border-color 0.5s ease;
-        }
-        .perspective-card:hover {
-            transform: rotateX(0deg) rotateY(0deg) translateY(-8px);
-            border-color: rgba(230, 110, 56, 0.8);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI қорғаныс · SENIM</title>
+<meta name="description" content="Сенім сүзгісі қалай жұмыс істейді: ережелер қозғалтқышы, Gemini талдауы, чат күзетшісі және AI тәлімгер.">
+<link rel="canonical" href="https://senim-eight.vercel.app/ai-protection">
+<meta name="theme-color" content="#0E0D0C">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SENIM">
+<meta property="og:title" content="AI қорғаныс · SENIM">
+<meta property="og:description" content="Сенім сүзгісі қалай жұмыс істейді: ережелер қозғалтқышы, Gemini талдауы, чат күзетшісі және AI тәлімгер.">
+<meta property="og:url" content="https://senim-eight.vercel.app/ai-protection">
+<meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preload" href="assets/fonts/geologica-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
-<body class="bg-[#0B0B0C] text-white min-h-screen font-sans px-6 py-16 md:px-12 relative overflow-x-hidden">
-    <a class="skip" href="#main">Негізгі мазмұнға өту</a>
+<body class="inner">
+<a class="skip" href="#main">Негізгі мазмұнға өту</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="s"/><feComposite in="SourceGraphic" in2="s" operator="in"/></filter></svg>
+<header class="nav is-solid" id="nav">
+  <div class="wrap nav__in">
+    <a class="nav__brand" href="/" aria-label="SENIM, басты бет">SENIM</a>
+    <nav aria-label="Бөлімдер">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="categories">Бағыттар</a></li>
+        <li><a href="merit">Деңгейлер</a></li>
+        <li><a href="safety">Заңдылық</a></li>
+        <li><a href="ai-protection" aria-current="page">AI қорғаныс</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--ink nav__cta" href="/#join">Тіркелу</a>
+    <button class="nav__menu" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Мәзір</button>
+  </div>
+</header>
 
-    <div class="fixed top-0 left-1/4 w-[400px] h-[400px] bg-matte-orange/5 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
-
-    <header class="max-w-6xl mx-auto mb-16 flex justify-between items-center">
-        <div>
-            <h1 class="text-3xl font-black font-mono tracking-tight text-white mb-2">TRIPLE COGNITIVE AI ҚОРҒАНЫСЫ</h1>
-            <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">Жасанды интеллект мониторинг жүйесінің сипаттамасы</p>
+<main id="main" tabindex="-1">
+  <section class="phead">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Жол"><a href="/">Басты бет</a><span aria-hidden="true">/</span><span>Сүзгі қалай жұмыс істейді</span></nav>
+      <h1 class="phead__title">Сүзгі қалай жұмыс істейді</h1>
+      <p class="lead">Әр мәтін екі тексеруден өтеді. Ережелер миллисекундта жауап береді, Gemini мағынасын оқиды. Үкімнің қатаңырағы жеңеді.</p>
+    </div>
+  </section>
+  <section class="prows">
+    <div class="wrap">
+      <article class="prow prow--stamped">
+        <div class="prow__head">
+          <p class="doc__meta">1-қабат</p>
+          <h2 class="prow__title">Ережелер қозғалтқышы</h2>
         </div>
-        <a href="index.html" class="text-sm font-mono text-slate-400 hover:text-matte-orange transition-colors flex items-center gap-2">
-            ← Артқа қайту
-        </a>
-    </header>
-
-    <main id="main" class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 perspective-container">
-
-        <!-- Panel 1: NLP Task Filter -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-4xl">🤖</span>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">NLP Filter</span>
-                </div>
-                <h2 class="text-xl font-bold font-mono text-white mb-4">NLP Тапсырма Сүзгісі</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Тапсырмалар мәтінін толық сканерлеп, физикалық қауіптілік тудыратын жұмыстарды (мысалы: "қоймада жұмыс істеу", "жәшік тасу", "оффлайн кездесу") жүйелі түрде тауып, бұғаттайды.
-                </p>
-            </div>
-            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
-                Қауіпсіздік индексі: <span class="text-emerald-400 font-bold">Әр хабарлама тексеріледі</span>
-            </div>
+        <div class="prow__body">
+          <p>Браузер мен серверде бірдей жұмыс істейді, деректер ешқайда жіберілмейді. Қазақша, орысша және бүркемеленген жазуды («w h a t s a p p», «к.а.с.п.и») таниды.</p>
+          
+          <ul class="tags" aria-label="Дағдылар"><li>Оффлайн қауіп</li><li>Платформадан тыс байланыс</li><li>Тікелей төлем</li><li>Дроппер</li><li>Жеке шекараны бұзу</li><li>Жасқа сай емес</li></ul>
+          <dl class="pfacts"><div><dt>Жауап уақыты</dt><dd>1 мс-тен аз</dd></div><div><dt>Тесттер</dt><dd>18</dd></div></dl>
         </div>
-
-        <!-- Panel 2: Escrow Chat Sentinel -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-4xl">🛡️</span>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Chat Sentinel</span>
-                </div>
-                <h2 class="text-xl font-bold font-mono text-white mb-4">Escrow Чат Күзетшісі</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Чат ішіндегі сыртқы желілерге сілтемелерді, Kaspi/карта нөмірлерін немесе телефондарды автоматты түрде тауып, бұғаттайтын қауіпсіз оқшаулау сүзгісі.
-                </p>
-            </div>
-            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
-                Фишингтен қорғау: <span class="text-emerald-400 font-bold">БЕЛСЕНДІ</span>
-            </div>
+        <span class="stamp stamp--safe prow__stamp" aria-hidden="true">ҚОСУЛЫ</span>
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">2-қабат</p>
+          <h2 class="prow__title">Gemini талдауы</h2>
         </div>
-
-        <!-- Panel 3: Dual-AI Co-Pilot -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-4xl">💡</span>
-                    <span class="text-[10px] font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Co-Pilot</span>
-                </div>
-                <h2 class="text-xl font-bold font-mono text-white mb-4">Екі жақты AI Көмекшісі</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Жастарға код немесе дизайн бойынша кеңес беретін тәлімгер, ал бизнестерге сауатты техникалық талаптарды секунд ішінде құрастыратын автоматты конструктор.
-                </p>
-            </div>
-            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
-                Дайындық жылдамдығы: <span class="text-white font-bold">&lt; 3 секунд</span>
-            </div>
+        <div class="prow__body">
+          <p>Мәтінді мағынасымен оқиды: неге қауіпті екенін қазақша түсіндіреді, жасөспірімге кеңес береді. Қауіпсіз тапсырмаға деңгей, әділ бюджет пен мерзім ұсынады. Модель бос болмаса, келесісіне ауысады, ал AI мүлде жауап бермесе, ережелер үкімі қалады.</p>
+          
+          
+          <dl class="pfacts"><div><dt>Модельдер</dt><dd>Gemini Flash Lite тізбегі</dd></div><div><dt>Шешім</dt><dd>екі үкімнің қатаңы</dd></div></dl>
         </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Чат</p>
+          <h2 class="prow__title">Чат күзетшісі</h2>
+        </div>
+        <div class="prow__body">
+          <p>Телефон, карта нөмірі (Luhn тексерісімен), IBAN, сілтеме, email мен ник хабарлама жеткізілмей тұрып жасырылады. Қауіпті хабарлама жеткізілмейді, 14-17 жаста ата-анаға хабарланады.</p>
+          
+          
+          
+        </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Көмек</p>
+          <h2 class="prow__title">AI тәлімгер</h2>
+        </div>
+        <div class="prow__body">
+          <p>Кабинеттегі тәлімгер кодқа, дизайнға, баға қоюға көмектеседі. Сұрақ алдымен сүзгіден өтеді: алаяқтық белгісі болса, модельге жіберілмейді.</p>
+          <ul class="check-list"><li>Пайдаланушы жазған тілде жауап береді</li><li>Жеке дерек сұрамайды, платформадан тыс төлемге кеңес бермейді</li></ul>
+          
+          
+        </div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="pnext">
+    <div class="wrap">
+      <a class="pnext__link" href="categories"><span class="doc__meta">Келесі бөлім</span><span class="pnext__title">Фриланс бағыттары</span></a>
+    </div>
+  </section>
+</main>
 
-    </main>
-
+<footer class="foot">
+  <div class="wrap foot__in">
+    <nav aria-label="Төменгі мәзір" class="foot__nav">
+      <a href="/">Басты бет</a>
+      <a href="/#guard">Сүзгіні сынау</a>
+      <a href="dashboard">Демо кабинет</a>
+      <a href="https://github.com/galinurislam0-svg/senim" rel="noopener">GitHub</a>
+    </nav>
+    <p class="doc__meta">Хакатон прототипі. SMS шлюзі мен банк әлі қосылмаған.</p>
+  </div>
+  <p class="foot__word" aria-hidden="true">SENIM</p>
+</footer>
+<script src="js/inner.js" defer></script>
 </body>
 </html>

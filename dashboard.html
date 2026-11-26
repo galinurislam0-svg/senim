@@ -75,7 +75,7 @@
         .ledger-row:nth-child(odd) { background: rgba(255,255,255,0.02); }
     </style>
 </head>
-<body class="bg-[#0B0B0C] text-white min-h-screen font-sans">
+<body class="dash bg-[#0B0B0C] text-white min-h-screen font-sans">
     <a class="skip" href="#main">Негізгі мазмұнға өту</a>
 
     <!-- Ambient background glows -->
@@ -126,7 +126,7 @@
             </div>
 
             <!-- Logout -->
-            <a href="index.html" class="flex items-center gap-2 text-xs font-mono text-slate-600 hover:text-matte-orange transition-colors px-3">
+            <a href="/" class="flex items-center gap-2 min-h-[36px] text-xs font-mono text-slate-600 hover:text-matte-orange transition-colors px-3">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                 </svg>
@@ -141,7 +141,7 @@
             <header class="sticky top-0 z-20 bg-[#0B0B0C]/80 backdrop-blur-xl border-b border-slate-900 px-6 lg:px-10 py-4 flex items-center justify-between">
                 <div>
                     <p class="text-[10px] font-mono text-slate-600 uppercase tracking-widest">ЖАС КӘСІБИ ЖҰМЫС КЕНІСТІГІ</p>
-                    <h1 class="text-lg font-black font-mono text-white leading-tight" id="dashboard-greeting">Сәлеметсіз бе 👋</h1>
+                    <h1 class="text-lg font-black font-mono text-white leading-tight" id="dashboard-greeting">Сәлеметсіз бе</h1>
                 </div>
 
                 <!-- Profile chip -->
@@ -184,7 +184,7 @@
                     <div class="bg-matte-dark/60 border border-slate-900 rounded-2xl p-5 hover:border-matte-orange/30 transition-colors">
                         <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Орындалған жобалар</p>
                         <p class="text-2xl font-black font-mono text-white">18</p>
-                        <p class="text-[10px] font-mono text-slate-600 mt-2">Рейтинг: ⭐ 4.97 / 5.0</p>
+                        <p class="text-[10px] font-mono text-slate-600 mt-2">Рейтинг: 4.97 / 5.0</p>
                     </div>
                 </div>
 
@@ -303,7 +303,7 @@
                     <div class="flex items-center justify-between px-6 py-4 border-b border-slate-900">
                         <div>
                             <p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">SENIM AI</p>
-                            <h2 class="text-sm font-black font-mono text-white">🤖 AI Mentor Workspace</h2>
+                            <h2 class="text-sm font-black font-mono text-white">AI тәлімгер</h2>
                         </div>
                         <span class="text-[10px] font-mono bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full font-bold animate-pulse">● ONLINE</span>
                     </div>
@@ -421,7 +421,7 @@
             // Header greeting
             const greeting = document.getElementById('dashboard-greeting');
             const storedName = (() => { try { return localStorage.getItem('senim_user_name'); } catch (_) { return null; } })();
-            if (greeting) greeting.textContent = storedName ? `Сәлеметсіз бе, ${storedName.split(' ')[0]} 👋` : 'Сәлеметсіз бе 👋';
+            if (greeting) greeting.textContent = storedName ? `Сәлеметсіз бе, ${storedName.split(' ')[0]}` : 'Сәлеметсіз бе';
 
             // Profile name chip
             const profileNameEl = document.getElementById('user-profile-name');

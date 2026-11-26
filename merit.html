@@ -1,118 +1,115 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="kk" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Меріт-деңгейлер · SENIM</title>
-    <meta name="description" content="Starter, Expert, Elite: дағды өскен сайын жоба бюджеті 25 000-нан 500 000 теңгеге дейін өседі.">
-    <link rel="canonical" href="https://senim-eight.vercel.app/merit">
-    <meta name="theme-color" content="#0E0D0C">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="SENIM">
-    <meta property="og:title" content="Меріт-деңгейлер · SENIM">
-    <meta property="og:description" content="Starter, Expert, Elite: дағды өскен сайын жоба бюджеті 25 000-нан 500 000 теңгеге дейін өседі.">
-    <meta property="og:url" content="https://senim-eight.vercel.app/merit">
-    <meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/tw.css">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .perspective-container {
-            perspective: 1000px;
-        }
-        .perspective-card {
-            transform: rotateX(6deg) rotateY(-3deg);
-            transition: transform 0.5s ease, border-color 0.5s ease;
-        }
-        .perspective-card:hover {
-            transform: rotateX(0deg) rotateY(0deg) translateY(-8px);
-            border-color: rgba(230, 110, 56, 0.8);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Меріт-деңгейлер · SENIM</title>
+<meta name="description" content="Starter, Expert, Elite: SENIM-де дағды өскен сайын жоба бюджеті 25 000-нан 500 000 теңгеге дейін өседі.">
+<link rel="canonical" href="https://senim-eight.vercel.app/merit">
+<meta name="theme-color" content="#0E0D0C">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SENIM">
+<meta property="og:title" content="Меріт-деңгейлер · SENIM">
+<meta property="og:description" content="Starter, Expert, Elite: SENIM-де дағды өскен сайын жоба бюджеті 25 000-нан 500 000 теңгеге дейін өседі.">
+<meta property="og:url" content="https://senim-eight.vercel.app/merit">
+<meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preload" href="assets/fonts/geologica-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
-<body class="bg-[#0B0B0C] text-white min-h-screen font-sans px-6 py-16 md:px-12 relative overflow-x-hidden">
-    <a class="skip" href="#main">Негізгі мазмұнға өту</a>
+<body class="inner">
+<a class="skip" href="#main">Негізгі мазмұнға өту</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="s"/><feComposite in="SourceGraphic" in2="s" operator="in"/></filter></svg>
+<header class="nav is-solid" id="nav">
+  <div class="wrap nav__in">
+    <a class="nav__brand" href="/" aria-label="SENIM, басты бет">SENIM</a>
+    <nav aria-label="Бөлімдер">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="categories">Бағыттар</a></li>
+        <li><a href="merit" aria-current="page">Деңгейлер</a></li>
+        <li><a href="safety">Заңдылық</a></li>
+        <li><a href="ai-protection">AI қорғаныс</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--ink nav__cta" href="/#join">Тіркелу</a>
+    <button class="nav__menu" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Мәзір</button>
+  </div>
+</header>
 
-    <div class="fixed top-0 left-1/4 w-[400px] h-[400px] bg-matte-orange/5 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
-
-    <header class="max-w-6xl mx-auto mb-16 flex justify-between items-center">
-        <div>
-            <h1 class="text-3xl font-black font-mono tracking-tight text-white mb-2">МЕРИТ-ДЕҢГЕЙЛЕР ЖӘНЕ ДАМУ</h1>
-            <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">Skill-Based Merit Levels жүйесінің құрылымы</p>
+<main id="main" tabindex="-1">
+  <section class="phead">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Жол"><a href="/">Басты бет</a><span aria-hidden="true">/</span><span>Меріт-деңгейлер</span></nav>
+      <h1 class="phead__title">Меріт-деңгейлер</h1>
+      <p class="lead">Деңгей жасқа емес, дағдыға байланысты. Әр деңгейде жобаның ең жоғарғы бюджеті мен қолжетімді бағыттар ашылады.</p>
+    </div>
+  </section>
+  <section class="prows">
+    <div class="wrap">
+      <article class="prow prow--stamped">
+        <div class="prow__head">
+          <p class="doc__meta">Деңгей 1</p>
+          <h2 class="prow__title">Starter</h2>
         </div>
-        <a href="index.html" class="text-sm font-mono text-slate-400 hover:text-matte-orange transition-colors flex items-center gap-2">
-            ← Артқа қайту
-        </a>
-    </header>
-
-    <main id="main" class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 perspective-container">
-
-        <!-- Level 1 -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Level 1</span>
-                </div>
-                <h2 class="text-xl font-bold font-mono text-white mb-4">Starter (Бастаушы)</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Тіркелген кезде берілетін базалық деңгей. Негізгі дағдыларды тексеру үшін AI сұрақтары мен тестілерінен өту қажет.
-                </p>
-                <div class="flex flex-wrap gap-1 mb-6">
-                    <span class="micro-pill">Транскрипция</span>
-                    <span class="micro-pill">Мәтін аудару</span>
-                    <span class="micro-pill">Деректер жинақтау</span>
-                </div>
-            </div>
-            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
-                Максималды жоба құны: <span class="text-white font-bold">25,000 ₸</span>
-            </div>
+        <div class="prow__body">
+          <p>Тіркелген кезде беріледі. Цифрлық сауаттылық тесті мен қысқа сынақ тапсырмасынан өту керек.</p>
+          <ul class="check-list"><li>Аударма, транскрипция, деректер жинау</li><li>Бір мезгілде 2 белсенді жоба</li><li>Келесі деңгейге: 5 жоба және орташа баға 4.5</li></ul>
+          
+          <dl class="pfacts"><div><dt>Жоба бюджеті</dt><dd>25 000 ₸-ге дейін</dd></div></dl>
         </div>
-
-        <!-- Level 2 -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Level 2</span>
-                </div>
-                <h2 class="text-xl font-bold font-mono text-white mb-4">Expert (Маман)</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Клиенттермен сенімді жұмыс тәжірибесі мен оң рейтингтер негізінде берілетін кәсіби деңгей.
-                </p>
-                <div class="flex flex-wrap gap-1 mb-6">
-                    <span class="micro-pill">Видеомонтаж</span>
-                    <span class="micro-pill">UI/UX Дизайн</span>
-                    <span class="micro-pill">3D Модельдеу</span>
-                </div>
-            </div>
-            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
-                Максималды жоба құны: <span class="text-white font-bold">150,000 ₸</span>
-            </div>
+        <span class="stamp stamp--safe prow__stamp" aria-hidden="true">АШЫҚ</span>
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Деңгей 2</p>
+          <h2 class="prow__title">Expert</h2>
         </div>
-
-        <!-- Level 3 -->
-        <div class="glass-panel perspective-card rounded-3xl p-8 border border-matte-orange-12 bg-matte-dark/30 flex flex-col justify-between lg:h-[60vh]">
-            <div>
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-xs font-mono bg-matte-orange/10 text-matte-orange px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Level 3</span>
-                </div>
-                <h2 class="text-xl font-bold font-mono text-white mb-4">Elite Master (Шебер)</h2>
-                <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                    Жоғары технологиялық SaaS жобалар мен кәсіпорындар үшін күрделі даму карталарын әзірлейтін элиталық топ.
-                </p>
-                <div class="flex flex-wrap gap-1 mb-6">
-                    <span class="micro-pill">Full-stack әзірлеу</span>
-                    <span class="micro-pill">SaaS құру</span>
-                    <span class="micro-pill">Дерекқор архитектурасы</span>
-                </div>
-            </div>
-            <div class="border-t border-slate-900 pt-6 font-mono text-xs text-slate-500">
-                Максималды жоба құны: <span class="text-white font-bold">500,000 ₸+</span>
-            </div>
+        <div class="prow__body">
+          <p>Портфолио модератордан өткенде және клиенттердің бағасы жоғары болғанда беріледі.</p>
+          <ul class="check-list"><li>Дизайн, монтаж, маркетинг, қарапайым код</li><li>Бір мезгілде 4 белсенді жоба</li><li>Келесі деңгейге: 20 жоба және тірі сынақ</li></ul>
+          
+          <dl class="pfacts"><div><dt>Жоба бюджеті</dt><dd>150 000 ₸-ге дейін</dd></div></dl>
         </div>
+        
+      </article>
+      <article class="prow">
+        <div class="prow__head">
+          <p class="doc__meta">Деңгей 3</p>
+          <h2 class="prow__title">Elite</h2>
+        </div>
+        <div class="prow__body">
+          <p>Тірі сынақ (live review) пен келісімшарт стандартын білу тесті арқылы беріледі.</p>
+          <ul class="check-list"><li>Full-stack, SaaS, дерекқор архитектурасы</li><li>Ұзақ мерзімді келісімшарттар</li><li>Pro режимде (18+) толық қолжетімді</li></ul>
+          
+          <dl class="pfacts"><div><dt>Жоба бюджеті</dt><dd>500 000 ₸-ге дейін</dd></div></dl>
+        </div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="pnext">
+    <div class="wrap">
+      <a class="pnext__link" href="safety"><span class="doc__meta">Келесі бөлім</span><span class="pnext__title">Заңдылық пен қауіпсіздік</span></a>
+    </div>
+  </section>
+</main>
 
-    </main>
-
+<footer class="foot">
+  <div class="wrap foot__in">
+    <nav aria-label="Төменгі мәзір" class="foot__nav">
+      <a href="/">Басты бет</a>
+      <a href="/#guard">Сүзгіні сынау</a>
+      <a href="dashboard">Демо кабинет</a>
+      <a href="https://github.com/galinurislam0-svg/senim" rel="noopener">GitHub</a>
+    </nav>
+    <p class="doc__meta">Хакатон прототипі. SMS шлюзі мен банк әлі қосылмаған.</p>
+  </div>
+  <p class="foot__word" aria-hidden="true">SENIM</p>
+</footer>
+<script src="js/inner.js" defer></script>
 </body>
 </html>
