@@ -49,4 +49,46 @@ t('кәмелетке толмаған табысы өз картасына', ()
   assert.strictEqual(r.toCard + r.toSavings, r.netPayout);
   assert.ok(r.guardianNotified);
 });
-console.log(`\n${passed} тест өтті`);
+// ── API (Gemini-сіз, жергілікті) ──
+process.env.OTP_SECRET = 'test-secret';
+delete process.env.GEMINI_API_KEY;
+const L = require('../api/_lib.js');
+function call(handler, body) {
+  return new Promise(resolve => {
+    const res = { headers: {}, statusCode: 200, setHeader(k, v) { this.headers[k] = v; }, end(d) { resolve({ status: this.statusCode, data: JSON.parse(d) }); } };
+    handler({ method: 'POST', headers: {}, body }, res);
+  });
+}
+const at = async (name, fn) => { await fn(); passed++; console.log('  ✓', name); };
+(async () => {
+  await at('токен: қол қою және өзгертуді анықтау', () => {
+    const t = L.sign({ a: 1, exp: Date.now() + 1000 });
+    assert.deepStrictEqual(L.verify(t).a, 1);
+    assert.strictEqual(L.verify(t.slice(0, -2) + 'xx'), null);
+    assert.strictEqual(L.verify(L.sign({ exp: Date.now() - 1 })), null);
+  });
+  const otp = require('../api/otp.js'), reg = require('../api/register.js'), guard = require('../api/guard.js');
+  await at('OTP: жіберу → қате код → дұрыс код → келісім', async () => {
+    const s = await call(otp, { action: 'send', phone: '87071234567' });
+    assert.strictEqual(s.status, 200); assert.ok(/^\d{6}$/.test(s.data.demoCode));
+    const bad = await call(otp, { action: 'verify', token: s.data.token, code: '000000' === s.data.demoCode ? '111111' : '000000' });
+    assert.strictEqual(bad.data.ok, false);
+    const ok = await call(otp, { action: 'verify', token: s.data.token, code: s.data.demoCode });
+    assert.ok(ok.data.ok && ok.data.consent);
+    const r = await call(reg, { type: 'youth', name: 'Айгерім', age: 16, email: 'a@b.kz', password: 'qwerty123', terms: true, consent: ok.data.consent });
+    assert.strictEqual(r.data.profile.role, 'junior');
+  });
+  await at('тіркелу: 16 жас келісімсіз өтпейді', async () => {
+    const r = await call(reg, { type: 'youth', name: 'Айгерім', age: 16, email: 'a@b.kz', password: 'qwerty123', terms: true });
+    assert.strictEqual(r.status, 422); assert.ok(r.data.errors.parentPhone);
+  });
+  await at('тіркелу: бизнес БСН серверде тексеріледі', async () => {
+    const r = await call(reg, { type: 'business', company: 'Мысал', bin: '990740001305', phone: '+77071234567', email: 'a@b.kz', password: 'qwerty123' });
+    assert.ok(r.data.errors.bin);
+  });
+  await at('guard: AI кілтсіз де ережелер жұмыс істейді', async () => {
+    const r = await call(guard, { text: 'Қоймаға келіп жәшік тасу керек', mode: 'task' });
+    assert.strictEqual(r.data.verdict, 'BLOCK'); assert.strictEqual(r.data.source, 'rules');
+  });
+  console.log(`\n${passed} тест өтті`);
+})().catch(e => { console.error('✗', e); process.exit(1); });

@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENIM — Жас Маман Жұмыс Кеңістігі</title>
-    <meta name="description" content="SENIM фриланс платформасының кәсіби жас маман жұмыс кеңістігі. Escrow тапсырмалары, AI Mentor, табыс аналитикасы.">
+    <title>Демо кабинет · SENIM</title>
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Жас маманның демо кабинеті: escrow тапсырмалары, AI тәлімгер, табыс және салық журналы.">
+    <link rel="canonical" href="https://senim-eight.vercel.app/dashboard">
+    <meta name="theme-color" content="#0E0D0C">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SENIM">
+    <meta property="og:title" content="Демо кабинет · SENIM">
+    <meta property="og:description" content="Жас маманның демо кабинеті: escrow тапсырмалары, AI тәлімгер, табыс және салық журналы.">
+    <meta property="og:url" content="https://senim-eight.vercel.app/dashboard">
+    <meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/tw.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -65,6 +76,7 @@
     </style>
 </head>
 <body class="bg-[#0B0B0C] text-white min-h-screen font-sans">
+    <a class="skip" href="#main">Негізгі мазмұнға өту</a>
 
     <!-- Ambient background glows -->
     <div class="glow-orb w-[500px] h-[500px] bg-matte-orange/5 top-0 left-0 -translate-x-1/3 -translate-y-1/3"></div>
@@ -123,7 +135,7 @@
         </aside>
 
         <!-- ─── MAIN CONTENT ───────────────────────────────────────── -->
-        <main class="flex-1 overflow-y-auto">
+        <main id="main" class="flex-1 overflow-y-auto">
 
             <!-- ── TOP NAV BAR ────────────────────────────────────── -->
             <header class="sticky top-0 z-20 bg-[#0B0B0C]/80 backdrop-blur-xl border-b border-slate-900 px-6 lg:px-10 py-4 flex items-center justify-between">
@@ -299,7 +311,7 @@
                     <!-- Terminal -->
                     <div id="ai-mentor-console"
                          class="px-6 py-4 h-52 overflow-y-auto font-mono text-xs text-slate-400 space-y-1.5 bg-black/40 leading-relaxed">
-                        <div class="text-slate-600">// SENIM AI Mentor v2.6 — іске қосылды</div>
+                        <div class="text-slate-600">// SENIM AI тәлімгер іске қосылды (Gemini)</div>
                         <div class="text-teal-400">// Сәлеметсіз бе! Код, дизайн немесе логика бойынша кез-келген сұрақты қойыңыз.</div>
                     </div>
 

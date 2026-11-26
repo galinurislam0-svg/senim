@@ -211,8 +211,11 @@
         return out + escapeHtml(text.slice(pos));
     }
 
-    window.AISecurity = {
+    const api = {
         analyze, evaluateTaskDescription, sanitizeChatMessage, highlight, escapeHtml,
         categories: CATEGORIES
     };
+    const root = typeof window !== 'undefined' ? window : globalThis;
+    root.AISecurity = api;
+    if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })();

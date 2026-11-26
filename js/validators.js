@@ -68,5 +68,8 @@
         return v.length >= 2 && v.split(/\s+/).length >= 1 ? '' : 'Аты-жөніңізді жазыңыз';
     }
 
-    window.Validators = { bin, phone, formatPhone, email, password, age, name, checkDigitValid };
+    const api = { bin, phone, formatPhone, email, password, age, name, checkDigitValid };
+    const root = typeof window !== 'undefined' ? window : globalThis;
+    root.Validators = api;
+    if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })();

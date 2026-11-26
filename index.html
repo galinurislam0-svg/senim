@@ -1,478 +1,413 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="kk" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENIM — жастарға арналған қауіпсіз фриланс</title>
-    <meta name="description" content="SENIM — 14–22 жастағы жастарға арналған қауіпсіз фриланс платформасы: escrow төлем, ата-ана келісімі, алаяқтықты сүзгі және салықты автоматты төлеу.">
-    <meta name="theme-color" content="#0B0B0C">
-    <meta property="og:title" content="SENIM — жастарға арналған қауіпсіз фриланс">
-    <meta property="og:description" content="Біліміңді табысқа айналдыр — қауіпсіз, заңды, ашық.">
-    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="assets/icons/logo-192.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="css/tw.css">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SENIM · жастарға арналған қауіпсіз фриланс</title>
+<meta name="description" content="14-22 жастағы жастарға арналған фриланс: төлем escrow кепілінде, әр тапсырманы AI сүзгісі тексереді, 14-17 жаста ата-ана SMS арқылы келіседі.">
+<link rel="canonical" href="https://senim-eight.vercel.app/">
+<meta name="theme-color" content="#0E0D0C">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SENIM">
+<meta property="og:title" content="SENIM · жастарға арналған қауіпсіз фриланс">
+<meta property="og:description" content="Әр тапсырмаға мөр басылады: сенім мөрі немесе тыйым мөрі. Тірі AI сүзгісін өзің сынап көр.">
+<meta property="og:url" content="https://senim-eight.vercel.app/">
+<meta property="og:image" content="https://senim-eight.vercel.app/assets/og.png">
+<meta property="og:locale" content="kk_KZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SENIM · жастарға арналған қауіпсіз фриланс">
+<meta name="twitter:description" content="Әр тапсырмаға мөр басылады: сенім мөрі немесе тыйым мөрі.">
+<meta name="twitter:image" content="https://senim-eight.vercel.app/assets/og.png">
+<link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/logo-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preload" href="assets/fonts/geologica-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/site.css">
+<script>
+  // JS бар және қозғалыс рұқсат етілген кезде ғана анимацияның бастапқы күйлері қосылады.
+  (function (d) {
+    var c = d.documentElement.classList;
+    c.remove('no-js'); c.add('js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) c.add('motion');
+    // GSAP жүктелмесе, мазмұн жасырын қалмасын
+    setTimeout(function () { if (!window.gsap) c.remove('motion'); }, 2500);
+  })(document);
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"SENIM","url":"https://senim-eight.vercel.app/","inLanguage":"kk","description":"14-22 жастағы жастарға арналған қауіпсіз фриланс платформасы: escrow төлем, ата-ана келісімі, AI алаяқтық сүзгісі.","publisher":{"@type":"Organization","name":"SENIM","logo":"https://senim-eight.vercel.app/assets/icons/logo-512.png"}}
+</script>
 </head>
-<body class="bg-matte-bg text-white antialiased">
-<a href="#main" class="skip-link">Негізгі мазмұнға өту</a>
+<body>
+<a class="skip" href="#main">Негізгі мазмұнға өту</a>
 
-<!-- ─── NAV ─────────────────────────────────────────────── -->
-<header id="top-nav" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
-    <nav class="mx-auto max-w-7xl flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16" aria-label="Негізгі мәзір">
-        <a href="#hero" class="font-mono font-black text-xl tracking-tight text-matte-orange">SENIM</a>
-        <ul class="hidden md:flex items-center gap-8 text-sm text-slate-400">
-            <li><a class="nav-link" href="#guard">Сенім сүзгісі</a></li>
-            <li><a class="nav-link" href="#how">Қалай жұмыс істейді</a></li>
-            <li><a class="nav-link" href="#escrow">Escrow</a></li>
-            <li><a class="nav-link" href="#levels">Деңгейлер</a></li>
-            <li><a class="nav-link" href="#faq">Сұрақтар</a></li>
-        </ul>
-        <div class="flex items-center gap-3">
-            <a href="#join" class="btn-primary text-sm px-4 py-2">Тіркелу</a>
-            <button id="menu-btn" class="md:hidden w-10 h-10 grid place-items-center rounded-xl border border-slate-800" aria-expanded="false" aria-controls="mobile-menu" aria-label="Мәзірді ашу">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-            </button>
-        </div>
+<!-- Мөрлердің сия текстурасы: бір рет анықталады, бүкіл бетте қолданылады -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="speck"/>
+    <feComposite in="SourceGraphic" in2="speck" operator="in" result="ink"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="1" seed="3" result="w"/>
+    <feDisplacementMap in="ink" in2="w" scale="2.2"/>
+  </filter>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="nav__brand" href="#top" aria-label="SENIM, басына оралу">SENIM</a>
+    <nav aria-label="Негізгі мәзір">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#guard">Сүзгі</a></li>
+        <li><a href="#how">Қалай</a></li>
+        <li><a href="#escrow">Escrow</a></li>
+        <li><a href="#levels">Деңгей</a></li>
+        <li><a href="#faq">Сұрақ</a></li>
+      </ul>
     </nav>
-    <div id="mobile-menu" class="md:hidden hidden border-t border-slate-900 bg-matte-bg/95 backdrop-blur">
-        <ul class="px-4 py-3 space-y-1 text-slate-300">
-            <li><a class="block py-2" href="#guard">Сенім сүзгісі</a></li>
-            <li><a class="block py-2" href="#how">Қалай жұмыс істейді</a></li>
-            <li><a class="block py-2" href="#escrow">Escrow</a></li>
-            <li><a class="block py-2" href="#levels">Деңгейлер</a></li>
-            <li><a class="block py-2" href="#faq">Сұрақтар</a></li>
-        </ul>
-    </div>
+    <a class="btn btn--ink nav__cta" href="#join">Тіркелу</a>
+    <button class="nav__menu" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Мәзір</button>
+  </div>
 </header>
 
 <main id="main">
 
-<!-- ─── HERO ────────────────────────────────────────────── -->
-<section id="hero" class="relative min-h-[100svh] flex flex-col justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-24 pb-12">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-5xl text-center">
-        <p class="reveal inline-flex items-center gap-2 rounded-full border border-slate-800 bg-matte-dark/60 px-4 py-1.5 text-xs font-mono text-slate-400">
-            <span class="pulse-dot" aria-hidden="true"></span> 14–22 жастағы жастарға арналған
-        </p>
-        <h1 class="reveal mt-8 font-mono font-black tracking-[-0.07em] text-matte-orange leading-none text-[clamp(4.5rem,18vw,15rem)] hero-title">
-            SENIM
-        </h1>
-        <p class="reveal mt-6 mx-auto max-w-2xl text-lg sm:text-2xl font-light leading-relaxed text-slate-300">
-            Біліміңді табысқа айналдыр. Төлемің кепілде, тапсырмаң тексерілген, ата-анаң тыныш.
-        </p>
-        <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="#join" class="btn-primary w-full sm:w-auto px-7 py-3.5">Тегін тіркелу</a>
-            <a href="#guard" class="btn-ghost w-full sm:w-auto px-7 py-3.5">Сүзгіні сынап көр →</a>
-        </div>
+<!-- ═════ HERO ═════ -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="hero__kicker" data-intro>14-22 жас · Қазақстан</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="line">Біліміңді</span>
+        <span class="line">табысқа</span>
+        <span class="line">айналдыр.</span>
+        <span class="line line--ink">Мөрмен қорғалған.</span>
+      </h1>
+      <p class="hero__lead" data-intro>SENIM әр тапсырманы тексеріп, оған мөр басады. Төлем жұмыс басталмай тұрып кепілге салынады. 14-17 жаста тіркелуді ата-ана SMS арқылы растайды.</p>
+      <div class="hero__actions" data-intro>
+        <a class="btn btn--seal" href="#join">Тегін тіркелу</a>
+        <a class="btn btn--line" href="#guard">Сүзгіні сынап көр</a>
+      </div>
     </div>
 
-    <dl class="reveal relative mx-auto mt-16 w-full max-w-5xl grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-slate-900 bg-slate-900 text-left">
-        <div class="bg-matte-dark p-5">
-            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Төлем</dt>
-            <dd class="mt-1 font-bold">Escrow кепілінде</dd>
-        </div>
-        <div class="bg-matte-dark p-5">
-            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Салық</dt>
-            <dd class="mt-1 font-bold">4% — платформа өзі төлейді</dd>
-        </div>
-        <div class="bg-matte-dark p-5">
-            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500">14–17 жас</dt>
-            <dd class="mt-1 font-bold">Ата-ана SMS келісімі</dd>
-        </div>
-        <div class="bg-matte-dark p-5">
-            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Чат</dt>
-            <dd class="mt-1 font-bold">Алаяқтық сүзгісі</dd>
-        </div>
-    </dl>
+    <figure class="seal" id="hero-seal" aria-label="SENIM мөрі">
+      <svg class="seal__svg" viewBox="0 0 400 400" role="img" aria-labelledby="seal-t">
+        <title id="seal-t">SENIM мөрі: сенім, кепіл, қорғаныс</title>
+        <defs>
+          <path id="ring" d="M200,200 m-150,0 a150,150 0 1,1 300,0 a150,150 0 1,1 -300,0"/>
+        </defs>
+        <g class="seal__ink" filter="url(#ink)">
+          <circle cx="200" cy="200" r="188" class="seal__stroke" stroke-width="7"/>
+          <circle cx="200" cy="200" r="122" class="seal__stroke" stroke-width="3"/>
+          <g class="seal__ring" id="seal-ring">
+            <text class="seal__ringtext"><textPath href="#ring" startOffset="0">СЕНІМ ✦ КЕПІЛ ✦ ҚОРҒАНЫС ✦ СЕНІМ ✦ КЕПІЛ ✦ ҚОРҒАНЫС ✦</textPath></text>
+          </g>
+          <text x="200" y="214" class="seal__word" text-anchor="middle">SENIM</text>
+          <text x="200" y="252" class="seal__small" text-anchor="middle">2026 · ҚАЗАҚСТАН</text>
+          <text x="200" y="166" class="seal__small" text-anchor="middle">✦ ✦ ✦</text>
+        </g>
+      </svg>
+      <span class="seal__splash" aria-hidden="true"></span>
+    </figure>
+  </div>
+
+  <dl class="wrap ledger" data-reveal>
+    <div><dt>Төлем</dt><dd>Escrow кепілінде</dd></div>
+    <div><dt>Салық</dt><dd>4%, платформа төлейді</dd></div>
+    <div><dt>14-17 жас</dt><dd>Ата-ана SMS келісімі</dd></div>
+    <div><dt>Сүзгі</dt><dd>Ережелер + Gemini AI</dd></div>
+  </dl>
 </section>
 
-<!-- ─── PROBLEM ─────────────────────────────────────────── -->
-<section class="section" aria-labelledby="problem-title">
-    <div class="container-x">
-        <p class="eyebrow">Мәселе</p>
-        <h2 id="problem-title" class="h2 max-w-3xl">Жасөспірім онлайн табыс іздегенде, оны ең алдымен алаяқтар табады.</h2>
-        <div class="mt-12 grid gap-4 md:grid-cols-3">
-            <article class="card reveal">
-                <span class="icon-badge" aria-hidden="true">💳</span>
-                <h3 class="mt-5 text-lg font-bold">«Картаңды бере тұр»</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Дроппер схемалары жастардың картасы арқылы ұрланған ақшаны өткізеді. Соңында жауапты карта иесі болады.</p>
-            </article>
-            <article class="card reveal">
-                <span class="icon-badge" aria-hidden="true">📦</span>
-                <h3 class="mt-5 text-lg font-bold">«Қоймаға келіп кет»</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Онлайн жұмыс деп басталып, белгісіз мекенжайдағы оффлайн кездесуге айналатын «вакансиялар».</p>
-            </article>
-            <article class="card reveal">
-                <span class="icon-badge" aria-hidden="true">🕳️</span>
-                <h3 class="mt-5 text-lg font-bold">«Жұмыс біткен соң төлеймін»</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Келісімшарт жоқ, кепіл жоқ. Жұмыс тапсырылады, тапсырыс беруші жоғалып кетеді.</p>
-            </article>
-        </div>
-    </div>
+<!-- ═════ SCAMS: индекс-тізім ═════ -->
+<section class="scams" aria-labelledby="scams-title">
+  <div class="wrap">
+    <h2 class="h2 scams__title" id="scams-title" data-reveal>Онлайн табыс іздеген жасөспірімге ең алдымен алаяқтар жазады.</h2>
+    <ol class="scams__list">
+      <li class="scam" data-scam>
+        <blockquote class="scam__quote">«Картаңды бере тұр, 10% сенікі»</blockquote>
+        <p class="scam__note"><b>Дроппер схемасы.</b> Ұрланған ақша баланың картасы арқылы өтеді, ал жауапты карта иесі болады.</p>
+        <span class="stamp stamp--block scam__stamp" aria-hidden="true">ТЫЙЫМ</span>
+      </li>
+      <li class="scam" data-scam>
+        <blockquote class="scam__quote">«Қоймаға келіп кет, түнгі ауысым»</blockquote>
+        <p class="scam__note"><b>Оффлайн тұзақ.</b> Онлайн жұмыс деп басталып, белгісіз мекенжайдағы кездесуге айналады.</p>
+        <span class="stamp stamp--block scam__stamp" aria-hidden="true">ТЫЙЫМ</span>
+      </li>
+      <li class="scam" data-scam>
+        <blockquote class="scam__quote">«Жұмыс біткен соң төлеймін»</blockquote>
+        <p class="scam__note"><b>Кепілсіз келісім.</b> Жұмыс тапсырылады, тапсырыс беруші жоғалады. Келісімшарт та, дәлел де жоқ.</p>
+        <span class="stamp stamp--block scam__stamp" aria-hidden="true">ТЫЙЫМ</span>
+      </li>
+    </ol>
+  </div>
 </section>
 
-<!-- ─── LIVE GUARD ──────────────────────────────────────── -->
-<section id="guard" class="section" aria-labelledby="guard-title">
-    <div class="container-x">
-        <p class="eyebrow">Тірі демо</p>
-        <h2 id="guard-title" class="h2 max-w-3xl">Сенім сүзгісі. Өзің сынап көр.</h2>
-        <p class="lead max-w-2xl">Платформадағы әр тапсырма мен чат хабарламасы жарияланбас бұрын осы сүзгіден өтеді. Қазақша, орысша және «w h a t s a p p» сияқты бүркемеленген жазуды да таниды.</p>
-
-        <div class="mt-10 grid gap-4 lg:grid-cols-5">
-            <div class="card lg:col-span-3 flex flex-col">
-                <div class="flex flex-wrap items-center justify-between gap-3">
-                    <div class="segmented" role="tablist" aria-label="Тексеру түрі">
-                        <button role="tab" aria-selected="true" data-guard-mode="task">Тапсырма</button>
-                        <button role="tab" aria-selected="false" data-guard-mode="chat">Чат хабарламасы</button>
-                    </div>
-                    <span class="text-[11px] font-mono text-slate-500">браузерде жұмыс істейді · деректер жіберілмейді</span>
-                </div>
-                <label for="guard-input" class="sr-only">Тексерілетін мәтін</label>
-                <textarea id="guard-input" rows="5" class="matte-input mt-4 w-full rounded-xl px-4 py-3 text-sm leading-relaxed resize-y"
-                    placeholder="Мысалы: Қоймаға келіп жәшіктерді тасу керек, ақшасын Kaspi-ге тікелей аударамын"></textarea>
-                <div class="mt-4">
-                    <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2">Мысалдар</p>
-                    <div id="guard-examples" class="flex flex-wrap gap-2"></div>
-                </div>
-            </div>
-
-            <div class="card lg:col-span-2" aria-live="polite">
-                <div class="flex items-center justify-between">
-                    <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Нәтиже</p>
-                    <span id="guard-verdict" class="verdict verdict-idle">Күтуде</span>
-                </div>
-                <div class="mt-5">
-                    <div class="flex justify-between text-xs font-mono text-slate-400"><span>Қауіп деңгейі</span><span id="guard-score">0%</span></div>
-                    <div class="meter mt-2"><div id="guard-meter" class="meter-fill" style="width:0%"></div></div>
-                </div>
-                <div id="guard-preview" class="mt-5 rounded-xl border border-slate-900 bg-black/50 p-4 text-sm leading-relaxed min-h-[4.5rem] text-slate-500">
-                    Мәтін жазыңыз немесе мысалды таңдаңыз.
-                </div>
-                <ul id="guard-reasons" class="mt-4 space-y-2 text-sm"></ul>
-            </div>
-        </div>
+<!-- ═════ GUARD: қолтаңба ═════ -->
+<section class="guard" id="guard" aria-labelledby="guard-title">
+  <div class="wrap">
+    <div class="guard__head">
+      <p class="label" data-reveal>Тірі демо</p>
+      <h2 class="h2" id="guard-title" data-reveal>Мәтін жаз. Мөрді сүзгі басады.</h2>
+      <p class="lead" data-reveal>Платформадағы әр тапсырма мен чат хабарламасы екі тексеруден өтеді. Ережелер бірден жауап береді, ал Gemini мағынасын оқып, себебін түсіндіреді. Бүркемеленген <span class="nowrap">«w h a t s a p p»</span> да ұсталады.</p>
     </div>
+
+    <div class="guard__desk">
+      <div class="doc guard__input">
+        <div class="doc__bar">
+          <div class="tabs" role="tablist" aria-label="Тексеру түрі">
+            <button role="tab" id="tab-task" aria-selected="true" aria-controls="guard-input" data-guard-mode="task">Тапсырма</button>
+            <button role="tab" id="tab-chat" aria-selected="false" aria-controls="guard-input" data-guard-mode="chat">Чат хабарламасы</button>
+          </div>
+          <span class="doc__meta" id="guard-count">0 / 1500</span>
+        </div>
+        <label for="guard-input" class="sr-only">Тексерілетін мәтін</label>
+        <textarea id="guard-input" rows="6" maxlength="1500" placeholder="Мысалы: Қоймаға келіп жәшіктерді тасу керек, ақшасын Kaspi-ге тікелей аударамын"></textarea>
+        <div class="guard__examples">
+          <p class="doc__meta">Дайын мысалдар</p>
+          <div id="guard-examples" class="chips"></div>
+        </div>
+      </div>
+
+      <div class="doc guard__out" aria-live="polite" aria-atomic="false">
+        <div class="doc__bar">
+          <span class="doc__meta">Нәтиже</span>
+          <span class="doc__meta" id="guard-source">ережелер</span>
+        </div>
+        <div class="guard__sheet">
+          <div class="meter" aria-hidden="true"><i id="guard-meter"></i></div>
+          <p class="guard__score"><span>Қауіп деңгейі</span> <b id="guard-score">0%</b></p>
+          <div id="guard-preview" class="guard__preview is-empty">Сол жаққа мәтін жаз немесе мысалды таңда.</div>
+          <ul id="guard-reasons" class="reasons"></ul>
+          <div id="guard-ai" class="ai" hidden></div>
+          <span id="guard-stamp" class="stamp guard__stamp" aria-hidden="true"></span>
+        </div>
+        <p class="sr-only" id="guard-verdict-sr"></p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── HOW IT WORKS ────────────────────────────────────── -->
-<section id="how" class="section" aria-labelledby="how-title">
-    <div class="container-x">
-        <p class="eyebrow">Қалай жұмыс істейді</p>
-        <h2 id="how-title" class="h2 max-w-3xl">Төрт қадам. Әр қадамда қорғаныс бар.</h2>
-        <ol class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <li class="card step reveal">
-                <span class="step-num">01</span>
-                <h3 class="mt-4 font-bold">Тапсырма тексеріледі</h3>
-                <p class="mt-2 text-sm text-slate-400">Бизнес тапсырма жариялайды. Сүзгі оффлайн, жасқа сай емес және күмәнді тапсырмаларды тоқтатады.</p>
-            </li>
-            <li class="card step reveal">
-                <span class="step-num">02</span>
-                <h3 class="mt-4 font-bold">Ақша кепілге салынады</h3>
-                <p class="mt-2 text-sm text-slate-400">Тапсырыс беруші бюджетті алдын ала escrow-ға салады. Жұмыс басталғанда ақша бар екені белгілі.</p>
-            </li>
-            <li class="card step reveal">
-                <span class="step-num">03</span>
-                <h3 class="mt-4 font-bold">Қорғалған чатта жұмыс</h3>
-                <p class="mt-2 text-sm text-slate-400">Нөмір, сілтеме, карта сияқты деректер автоматты жасырылады. 14–17 жаста ата-ана хабарламаларды көреді.</p>
-            </li>
-            <li class="card step reveal">
-                <span class="step-num">04</span>
-                <h3 class="mt-4 font-bold">Төлем мен салық</h3>
-                <p class="mt-2 text-sm text-slate-400">Жұмыс қабылданғанда платформа 4% салықты ұстап, мемлекетке аударады. Қалғаны жас маманның картасына түседі.</p>
-            </li>
-        </ol>
+<!-- ═════ HOW: sticky тақырып + қадамдар ═════ -->
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="wrap how__grid">
+    <div class="how__side">
+      <h2 class="h2" id="how-title" data-reveal>Төрт қадам. Әрқайсысында мөр бар.</h2>
+      <p class="lead" data-reveal>Тапсырма жарияланғаннан бастап ақша картаға түскенге дейін ешбір қадам тексерусіз өтпейді.</p>
     </div>
+    <ol class="steps">
+      <li class="step" data-step>
+        <span class="step__seal" aria-hidden="true">1</span>
+        <div><h3>Тапсырма тексеріледі</h3><p>Бизнес тапсырма жариялайды. Сүзгі оффлайн, жасқа сай емес және күмәнді тапсырмаларды жарияламай тоқтатады, ал Gemini әділ бюджетті ұсынады.</p></div>
+      </li>
+      <li class="step" data-step>
+        <span class="step__seal" aria-hidden="true">2</span>
+        <div><h3>Ақша кепілге түседі</h3><p>Тапсырыс беруші бюджетті алдын ала escrow шотына салады. Жас маман жұмысқа кіріскенде ақшаның бар екенін біледі.</p></div>
+      </li>
+      <li class="step" data-step>
+        <span class="step__seal" aria-hidden="true">3</span>
+        <div><h3>Чат қорғалған</h3><p>Нөмір, сілтеме, карта мен IBAN автоматты жасырылады. 14-17 жаста ата-ана хабарламаларға шолу жасай алады.</p></div>
+      </li>
+      <li class="step" data-step>
+        <span class="step__seal" aria-hidden="true">4</span>
+        <div><h3>Төлем мен салық</h3><p>Жұмыс қабылданғанда платформа 4% салықты ұстап, мемлекетке аударады. Қалғаны жас маманның өз картасына түседі.</p></div>
+      </li>
+    </ol>
+  </div>
 </section>
 
-<!-- ─── ESCROW CALCULATOR ───────────────────────────────── -->
-<section id="escrow" class="section" aria-labelledby="escrow-title">
-    <div class="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-            <p class="eyebrow">Escrow калькуляторы</p>
-            <h2 id="escrow-title" class="h2">Қолыңа нақты қанша тиеді?</h2>
-            <p class="lead">Жасырын шегерім жоқ. Комиссия да, салық та жұмыс басталмай тұрып көрсетіледі.</p>
-            <ul class="mt-6 space-y-3 text-sm text-slate-400">
-                <li class="flex gap-3"><span class="text-matte-orange">●</span><span><b class="text-white">Салық 4%</b>: 2026 жылғы Салық кодексі бойынша өзін-өзі жұмыспен қамтығандар режимі. Платформа салық агенті ретінде оны өзі ұстап, аударады.</span></li>
-                <li class="flex gap-3"><span class="text-matte-orange">●</span><span><b class="text-white">Лимит</b>: айына 300 АЕК, яғни <span id="limit-label">1 297 500 ₸</span>. Одан асса, ЖК ретінде тіркелу керек.</span></li>
-                <li class="flex gap-3"><span class="text-matte-orange">●</span><span><b class="text-white">14–17 жас</b>: табыс жас маманның өз картасына түседі. Ата-ана әр төлемді көреді, жинақ үлесін отбасы өзі таңдайды.</span></li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <div class="segmented" role="tablist" aria-label="Пайдаланушы түрі">
-                <button role="tab" aria-selected="true" data-calc-mode="junior">Junior · 14–17</button>
-                <button role="tab" aria-selected="false" data-calc-mode="pro">Pro · 18–22</button>
-            </div>
-            <label for="calc-amount" class="mt-6 flex items-baseline justify-between text-sm text-slate-400">
-                <span>Жоба бюджеті</span>
-                <output id="calc-amount-out" class="font-mono text-2xl font-black text-white">85 000 ₸</output>
-            </label>
-            <input id="calc-amount" type="range" min="5000" max="500000" step="5000" value="85000" class="range mt-3 w-full">
-
-            <div id="savings-row" class="mt-5">
-                <label for="calc-savings" class="flex items-baseline justify-between text-sm text-slate-400">
-                    <span>Жинақ шотына (отбасы таңдайды)</span>
-                    <output id="calc-savings-out" class="font-mono text-white">0%</output>
-                </label>
-                <input id="calc-savings" type="range" min="0" max="50" step="5" value="0" class="range mt-3 w-full">
-            </div>
-
-            <div class="mt-6 h-3 w-full overflow-hidden rounded-full bg-slate-900 flex" aria-hidden="true">
-                <div id="bar-net" class="bg-emerald-400 transition-all duration-300"></div>
-                <div id="bar-save" class="bg-sky-400 transition-all duration-300"></div>
-                <div id="bar-tax" class="bg-amber-400 transition-all duration-300"></div>
-                <div id="bar-fee" class="bg-matte-orange transition-all duration-300"></div>
-            </div>
-            <dl class="mt-5 grid grid-cols-2 gap-3 text-sm">
-                <div class="ledger"><dt><i class="dot bg-emerald-400"></i>Картаға</dt><dd id="out-net">—</dd></div>
-                <div class="ledger"><dt><i class="dot bg-sky-400"></i>Жинаққа</dt><dd id="out-save">—</dd></div>
-                <div class="ledger"><dt><i class="dot bg-amber-400"></i>Салық (4%)</dt><dd id="out-tax">—</dd></div>
-                <div class="ledger"><dt><i class="dot bg-matte-orange"></i>Комиссия (10%)</dt><dd id="out-fee">—</dd></div>
-            </dl>
-            <p id="calc-note" class="mt-4 text-xs text-slate-500"></p>
-        </div>
+<!-- ═════ ESCROW: split калькулятор ═════ -->
+<section class="escrow" id="escrow" aria-labelledby="escrow-title">
+  <div class="wrap escrow__grid">
+    <div>
+      <h2 class="h2" id="escrow-title" data-reveal>Қолыңа нақты қанша тиеді?</h2>
+      <p class="lead" data-reveal>Комиссия мен салық жұмыс басталмай тұрып көрсетіледі. Жасырын шегерім жоқ.</p>
+      <dl class="facts" data-reveal>
+        <div><dt>Салық 4%</dt><dd>2026 жылғы Салық кодексі: платформа арқылы жұмыс істейтін өзін-өзі жұмыспен қамтығандар режимі. Платформа салық агенті ретінде өзі ұстайды.</dd></div>
+        <div><dt>Айлық лимит</dt><dd>300 АЕК, яғни <span id="limit-label">1 297 500 ₸</span>. Одан асса, ЖК ретінде тіркелу керек.</dd></div>
+        <div><dt>14-17 жас</dt><dd>Табыс баланың өз меншігі: картасына түседі. Ата-ана әр төлемді көреді, жинақ үлесін отбасы таңдайды.</dd></div>
+      </dl>
     </div>
+
+    <div class="doc calc">
+      <div class="doc__bar">
+        <div class="tabs" role="tablist" aria-label="Пайдаланушы түрі">
+          <button role="tab" aria-selected="true" data-calc-mode="junior">Junior · 14-17</button>
+          <button role="tab" aria-selected="false" data-calc-mode="pro">Pro · 18-22</button>
+        </div>
+      </div>
+      <div class="calc__body">
+        <label for="calc-amount" class="calc__row"><span>Жоба бюджеті</span><output id="calc-amount-out" class="calc__big">85 000 ₸</output></label>
+        <input id="calc-amount" class="range" type="range" min="5000" max="500000" step="5000" value="85000">
+        <div id="savings-row">
+          <label for="calc-savings" class="calc__row"><span>Жинақ шотына</span><output id="calc-savings-out">0%</output></label>
+          <input id="calc-savings" class="range" type="range" min="0" max="50" step="5" value="0">
+        </div>
+        <div class="split" aria-hidden="true"><i id="bar-net"></i><i id="bar-save"></i><i id="bar-tax"></i><i id="bar-fee"></i></div>
+        <dl class="calc__out">
+          <div><dt><i class="sw sw--net"></i>Картаға</dt><dd id="out-net">0</dd></div>
+          <div><dt><i class="sw sw--save"></i>Жинаққа</dt><dd id="out-save">0</dd></div>
+          <div><dt><i class="sw sw--tax"></i>Салық 4%</dt><dd id="out-tax">0</dd></div>
+          <div><dt><i class="sw sw--fee"></i>Комиссия 10%</dt><dd id="out-fee">0</dd></div>
+        </dl>
+        <p id="calc-note" class="doc__meta"></p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── JUNIOR / PRO ────────────────────────────────────── -->
-<section class="section" aria-labelledby="tiers-title">
-    <div class="container-x">
-        <p class="eyebrow">Заңдылық</p>
-        <h2 id="tiers-title" class="h2 max-w-3xl">Жасқа қарай екі режим</h2>
-        <div class="mt-10 grid gap-4 lg:grid-cols-2">
-            <article class="card reveal">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-black font-mono">SENIM Junior</h3>
-                    <span class="pill">14–17 жас</span>
-                </div>
-                <ul class="mt-6 space-y-3 text-sm text-slate-300 check-list">
-                    <li>Ата-ананың SMS арқылы келісімі. Онсыз тіркелу аяқталмайды</li>
-                    <li>Жұмыс уақытының шегі: 14–15 жасқа аптасына 24 сағат, 16–17 жасқа 36 сағат (ҚР Еңбек кодексі)</li>
-                    <li>Сабақ кезінде және кешкі 22:00-ден кейін тапсырма берілмейді</li>
-                    <li>Тек цифрлық тапсырмалар: оффлайн кездесуге тыйым салынған</li>
-                    <li>Ата-ана панелі: төлемдер мен чатқа шолу</li>
-                </ul>
-                <a href="safety.html" class="mt-6 inline-flex text-sm text-matte-orange hover:underline">Толығырақ →</a>
-            </article>
-            <article class="card reveal">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-black font-mono">SENIM Pro</h3>
-                    <span class="pill">18–22 жас</span>
-                </div>
-                <ul class="mt-6 space-y-3 text-sm text-slate-300 check-list">
-                    <li>Толық дербес аккаунт, жоғары бюджетті жобалар</li>
-                    <li>4% салықты платформа автоматты ұстап, аударады</li>
-                    <li>Айлық табыс лимитіне жақындағанда ескерту</li>
-                    <li>Escrow, ресми акт және PDF шот-фактура</li>
-                    <li>Портфолио мен меріт-рейтинг жұмыс берушілерге көрінеді</li>
-                </ul>
-                <a href="safety.html" class="mt-6 inline-flex text-sm text-matte-orange hover:underline">Толығырақ →</a>
-            </article>
-        </div>
+<!-- ═════ RULES: салыстыру кестесі ═════ -->
+<section class="rules" aria-labelledby="rules-title">
+  <div class="wrap">
+    <h2 class="h2" id="rules-title" data-reveal>Жасқа қарай екі режим</h2>
+    <div class="table-wrap" data-reveal>
+      <table class="compare">
+        <caption class="sr-only">SENIM Junior мен SENIM Pro режимдерін салыстыру</caption>
+        <thead><tr><th scope="col"><span class="sr-only">Шарт</span></th><th scope="col">Junior<small>14-17 жас</small></th><th scope="col">Pro<small>18-22 жас</small></th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Тіркелу</th><td>Ата-ананың SMS келісімі міндетті</td><td>Өзі тіркеледі</td></tr>
+          <tr><th scope="row">Жұмыс уақыты</th><td>Аптасына 24 сағат (14-15 жас), 36 сағат (16-17 жас). 22:00-ден кейін тапсырма жоқ</td><td>Шектеусіз</td></tr>
+          <tr><th scope="row">Тапсырмалар</th><td>Тек цифрлық, оқуға зиянсыз</td><td>Барлық цифрлық жобалар</td></tr>
+          <tr><th scope="row">Төлем</th><td>Өз картасына, ата-ана көреді</td><td>Өз картасына</td></tr>
+          <tr><th scope="row">Салық</th><td colspan="2">4%, платформа өзі ұстап, аударады</td></tr>
+          <tr><th scope="row">Негіз</th><td colspan="2">ҚР Еңбек кодексі (кәмелетке толмағандар) және 2026 жылғы Салық кодексі</td></tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </section>
 
-<!-- ─── MERIT LEVELS ────────────────────────────────────── -->
-<section id="levels" class="section" aria-labelledby="levels-title">
-    <div class="container-x">
-        <p class="eyebrow">Меріт-деңгейлер</p>
-        <h2 id="levels-title" class="h2 max-w-3xl">Дағдың өскен сайын табысың да өседі</h2>
-        <div class="mt-10 grid gap-4 md:grid-cols-3">
-            <article class="card level reveal">
-                <span class="step-num">LVL 1</span>
-                <h3 class="mt-3 text-xl font-bold">Starter</h3>
-                <p class="mt-2 text-sm text-slate-400">Транскрипция, аударма, деректер жинау</p>
-                <p class="mt-6 text-xs font-mono text-slate-500">Жоба бюджеті</p>
-                <p class="font-mono font-black text-2xl">25 000 ₸-ге дейін</p>
-            </article>
-            <article class="card level reveal">
-                <span class="step-num">LVL 2</span>
-                <h3 class="mt-3 text-xl font-bold">Expert</h3>
-                <p class="mt-2 text-sm text-slate-400">UI/UX, видеомонтаж, 3D модельдеу</p>
-                <p class="mt-6 text-xs font-mono text-slate-500">Жоба бюджеті</p>
-                <p class="font-mono font-black text-2xl">150 000 ₸-ге дейін</p>
-            </article>
-            <article class="card level reveal">
-                <span class="step-num">LVL 3</span>
-                <h3 class="mt-3 text-xl font-bold">Elite</h3>
-                <p class="mt-2 text-sm text-slate-400">Full-stack, SaaS, дерекқор архитектурасы</p>
-                <p class="mt-6 text-xs font-mono text-slate-500">Жоба бюджеті</p>
-                <p class="font-mono font-black text-2xl">500 000 ₸-ге дейін</p>
-            </article>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-2" id="skill-cloud" aria-label="Танымал бағыттар">
-            <a href="categories.html" class="micro-pill">Web Dev</a><a href="categories.html" class="micro-pill">Python</a>
-            <a href="categories.html" class="micro-pill">React</a><a href="categories.html" class="micro-pill">Figma</a>
-            <a href="categories.html" class="micro-pill">UI/UX</a><a href="categories.html" class="micro-pill">Blender</a>
-            <a href="categories.html" class="micro-pill">Моушн-графика</a><a href="categories.html" class="micro-pill">SMM</a>
-            <a href="categories.html" class="micro-pill">SEO</a><a href="categories.html" class="micro-pill">Аударма</a>
-            <a href="categories.html" class="micro-pill">Видеомонтаж</a><a href="categories.html" class="micro-pill">Барлық бағыттар →</a>
-        </div>
-    </div>
+<!-- ═════ LEVELS: баспалдақ ═════ -->
+<section class="levels" id="levels" aria-labelledby="levels-title">
+  <div class="wrap">
+    <h2 class="h2" id="levels-title" data-reveal>Дағдың өскен сайын, жобаң да үлкейеді.</h2>
+    <ol class="stairs">
+      <li class="stair" data-stair style="--h:34%">
+        <div class="stair__bar"></div>
+        <p class="stair__lvl">Starter</p>
+        <p class="stair__sum">25 000 ₸</p>
+        <p class="stair__what">Транскрипция, аударма, деректер жинау</p>
+      </li>
+      <li class="stair" data-stair style="--h:62%">
+        <div class="stair__bar"></div>
+        <p class="stair__lvl">Expert</p>
+        <p class="stair__sum">150 000 ₸</p>
+        <p class="stair__what">UI/UX, видеомонтаж, 3D модельдеу</p>
+      </li>
+      <li class="stair" data-stair style="--h:100%">
+        <div class="stair__bar"></div>
+        <p class="stair__lvl">Elite</p>
+        <p class="stair__sum">500 000 ₸</p>
+        <p class="stair__what">Full-stack, SaaS, дерекқор архитектурасы</p>
+      </li>
+    </ol>
+    <p class="doc__meta levels__note">Сома: бір жобаның ең жоғарғы бюджеті. Деңгей тест, портфолио және клиент бағасы арқылы көтеріледі.</p>
+  </div>
 </section>
 
-<!-- ─── JOIN ────────────────────────────────────────────── -->
-<section id="join" class="section" aria-labelledby="join-title">
-    <div class="container-x max-w-3xl">
-        <p class="eyebrow">Тіркелу</p>
-        <h2 id="join-title" class="h2">SENIM-ге қосыл</h2>
-
-        <div class="card mt-8">
-            <div class="segmented w-full" role="tablist" aria-label="Тіркелу түрі">
-                <button role="tab" aria-selected="true" data-join="youth" class="flex-1">👦 Жас маман</button>
-                <button role="tab" aria-selected="false" data-join="business" class="flex-1">💼 Бизнес</button>
-            </div>
-
-            <!-- Youth -->
-            <form id="youth-form" class="mt-6 grid gap-4 sm:grid-cols-2" novalidate>
-                <div class="field sm:col-span-2">
-                    <label for="y-name">Аты-жөні</label>
-                    <input id="y-name" name="name" autocomplete="name" class="matte-input" placeholder="Әлішер Сәбит" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field">
-                    <label for="y-age">Жасы</label>
-                    <input id="y-age" name="age" type="number" inputmode="numeric" min="14" max="22" class="matte-input" placeholder="16" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field">
-                    <label for="y-email">Email</label>
-                    <input id="y-email" name="email" type="email" autocomplete="email" class="matte-input" placeholder="email@example.com" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field sm:col-span-2">
-                    <label for="y-pass">Құпия сөз</label>
-                    <input id="y-pass" name="password" type="password" autocomplete="new-password" class="matte-input" placeholder="Кемінде 8 таңба, әріп пен цифр" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-
-                <fieldset id="guardian-block" class="sm:col-span-2 hidden rounded-xl border border-dashed border-matte-orange/40 bg-matte-orange/5 p-4">
-                    <legend class="px-2 text-xs font-mono text-matte-orange">Ата-ана келісімі · 14–17 жас</legend>
-                    <div class="field">
-                        <label for="y-parent">Ата-ананың телефоны</label>
-                        <input id="y-parent" name="parentPhone" type="tel" inputmode="tel" autocomplete="off" class="matte-input" placeholder="+7 707 123 45 67">
-                        <p class="field-error" aria-live="polite"></p>
-                    </div>
-                    <p class="mt-2 text-xs text-slate-400">Бұл нөмірге растау коды жіберіледі. Ата-ана кодты растамайынша аккаунт іске қосылмайды.</p>
-                </fieldset>
-
-                <div class="field sm:col-span-2">
-                    <label class="flex items-start gap-3 text-sm text-slate-400 cursor-pointer">
-                        <input id="y-terms" type="checkbox" class="mt-1 accent-[#E66E38]">
-                        <span>Платформа ережелерімен келісемін: тапсырма тек цифрлық, төлем тек escrow арқылы.</span>
-                    </label>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <button type="submit" class="btn-primary sm:col-span-2 py-3.5">Тіркелу</button>
-            </form>
-
-            <!-- Business -->
-            <form id="business-form" class="mt-6 grid gap-4 sm:grid-cols-2 hidden" novalidate>
-                <div class="field sm:col-span-2">
-                    <label for="b-company">Компания атауы</label>
-                    <input id="b-company" name="company" autocomplete="organization" class="matte-input" placeholder="«Мысал» ЖШС" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field">
-                    <label for="b-bin">БСН / ЖСН</label>
-                    <input id="b-bin" name="bin" inputmode="numeric" maxlength="12" class="matte-input font-mono" placeholder="12 цифр" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field">
-                    <label for="b-phone">Байланыс телефоны</label>
-                    <input id="b-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" class="matte-input" placeholder="+7 777 123 45 67" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field">
-                    <label for="b-email">Email</label>
-                    <input id="b-email" name="email" type="email" autocomplete="email" class="matte-input" placeholder="hr@company.kz" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <div class="field">
-                    <label for="b-pass">Құпия сөз</label>
-                    <input id="b-pass" name="password" type="password" autocomplete="new-password" class="matte-input" placeholder="Кемінде 8 таңба" required>
-                    <p class="field-error" aria-live="polite"></p>
-                </div>
-                <button type="submit" class="btn-primary sm:col-span-2 py-3.5">Серіктес болу</button>
-            </form>
-        </div>
+<!-- ═════ JOIN: құжат-форма ═════ -->
+<section class="join" id="join" aria-labelledby="join-title">
+  <div class="wrap join__grid">
+    <div class="join__side">
+      <h2 class="h2" id="join-title" data-reveal>Тіркелу парағы</h2>
+      <p class="lead" data-reveal>Деректер серверде қайта тексеріледі. 14-17 жаста ата-ана кодты растамайынша парақ мөрленбейді.</p>
     </div>
+
+    <div class="doc join__doc" id="join-doc">
+      <div class="doc__bar">
+        <div class="tabs" role="tablist" aria-label="Тіркелу түрі">
+          <button role="tab" aria-selected="true" data-join="youth" aria-controls="youth-form">Жас маман</button>
+          <button role="tab" aria-selected="false" data-join="business" aria-controls="business-form">Бизнес</button>
+        </div>
+        <span class="doc__meta">№ <span id="form-no">0001</span></span>
+      </div>
+
+      <form id="youth-form" class="form" novalidate>
+        <div class="field field--wide"><label for="y-name">Аты-жөні</label><input id="y-name" name="name" autocomplete="name" placeholder="Айгерім Серік" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field"><label for="y-age">Жасы</label><input id="y-age" name="age" type="number" inputmode="numeric" min="14" max="22" placeholder="16" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field"><label for="y-email">Email</label><input id="y-email" name="email" type="email" autocomplete="email" placeholder="aigerim@mail.kz" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field field--wide"><label for="y-pass">Құпия сөз</label><input id="y-pass" name="password" type="password" autocomplete="new-password" placeholder="Кемінде 8 таңба, әріп пен цифр" required><p class="field__err" aria-live="polite"></p></div>
+        <fieldset id="guardian-block" class="guardian field--wide" hidden>
+          <legend>Ата-ана келісімі</legend>
+          <div class="field"><label for="y-parent">Ата-ананың телефоны</label><input id="y-parent" name="parentPhone" type="tel" inputmode="tel" autocomplete="off" placeholder="+7 707 123 45 67"><p class="field__err" aria-live="polite"></p></div>
+          <p class="doc__meta">Осы нөмірге 6 таңбалы код жіберіледі.</p>
+        </fieldset>
+        <div class="field field--wide">
+          <label class="check"><input id="y-terms" type="checkbox"><span>Ережелермен келісемін: тапсырма тек цифрлық, төлем тек escrow арқылы.</span></label>
+          <p class="field__err" aria-live="polite"></p>
+        </div>
+        <button type="submit" class="btn btn--seal field--wide">Тіркелу</button>
+      </form>
+
+      <form id="business-form" class="form" novalidate hidden>
+        <div class="field field--wide"><label for="b-company">Компания атауы</label><input id="b-company" name="company" autocomplete="organization" placeholder="«Мысал» ЖШС" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field"><label for="b-bin">БСН / ЖСН</label><input id="b-bin" name="bin" inputmode="numeric" maxlength="12" placeholder="12 цифр" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field"><label for="b-phone">Телефон</label><input id="b-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 777 123 45 67" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field"><label for="b-email">Email</label><input id="b-email" name="email" type="email" autocomplete="email" placeholder="hr@company.kz" required><p class="field__err" aria-live="polite"></p></div>
+        <div class="field"><label for="b-pass">Құпия сөз</label><input id="b-pass" name="password" type="password" autocomplete="new-password" placeholder="Кемінде 8 таңба" required><p class="field__err" aria-live="polite"></p></div>
+        <button type="submit" class="btn btn--seal field--wide">Серіктес болу</button>
+      </form>
+      <span id="join-stamp" class="stamp stamp--safe join__stamp" aria-hidden="true">ТІРКЕЛДІ</span>
+    </div>
+  </div>
 </section>
 
-<!-- ─── FAQ ─────────────────────────────────────────────── -->
-<section id="faq" class="section" aria-labelledby="faq-title">
-    <div class="container-x max-w-3xl">
-        <p class="eyebrow">Сұрақтар</p>
-        <h2 id="faq-title" class="h2">Жиі қойылатын сұрақтар</h2>
-        <div class="mt-8 divide-y divide-slate-900 border-y border-slate-900">
-            <details class="faq">
-                <summary>14 жастағы бала заң бойынша жұмыс істей ала ма?</summary>
-                <p>Иә. ҚР Еңбек кодексі 14 жастан бастап ата-ананың келісімімен оқуға зиян келтірмейтін жеңіл жұмысқа рұқсат береді. Сондықтан SENIM Junior тек цифрлық тапсырмалар береді, уақытты шектейді және ата-ананың SMS келісімін талап етеді.</p>
-            </details>
-            <details class="faq">
-                <summary>Салықты өзім төлеуім керек пе?</summary>
-                <p>Жоқ. 2026 жылдан бастап интернет-платформа арқылы жұмыс істейтін өзін-өзі жұмыспен қамтығандар үшін платформа салық агенті болады. Табыстың 4%-ын ол өзі ұстап, мемлекетке аударады. Өңірде маслихат мөлшерлемені өзгерткен болса, есеп соған сай жүргізіледі.</p>
-            </details>
-            <details class="faq">
-                <summary>Тапсырыс беруші төлемей кетсе ше?</summary>
-                <p>Ол мүмкін емес: бюджет жұмыс басталмай тұрып escrow-ға салынады. Жұмыс қабылданғанда немесе дау шешілгенде ғана ақша босатылады.</p>
-            </details>
-            <details class="faq">
-                <summary>Неге чатта телефон нөмірін жаза алмаймын?</summary>
-                <p>Алаяқтықтың басым бөлігі баланы платформадан WhatsApp пен Telegram-ға шығарудан басталады. Сондықтан нөмір, сілтеме және карта деректері чатта автоматты жасырылады.</p>
-            </details>
-        </div>
+<!-- ═════ FAQ ═════ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq__grid">
+    <h2 class="h2" id="faq-title" data-reveal>Сұрақтар</h2>
+    <div class="faq__list">
+      <details><summary>14 жастағы бала заң бойынша жұмыс істей ала ма?</summary><p>Иә. ҚР Еңбек кодексі 14 жастан бастап ата-ана келісімімен оқуға зиян келтірмейтін жеңіл жұмысқа рұқсат береді. Сондықтан SENIM Junior тек цифрлық тапсырмалар береді, уақытты шектейді және ата-ананың SMS келісімін талап етеді.</p></details>
+      <details><summary>Салықты өзім төлеуім керек пе?</summary><p>Жоқ. 2026 жылдан бастап интернет-платформа арқылы жұмыс істейтін өзін-өзі жұмыспен қамтығандар үшін платформа салық агенті болады. Табыстың 4%-ын ол өзі ұстап, мемлекетке аударады. Маслихат мөлшерлемені өзгерткен өңірде есеп соған сай жүреді.</p></details>
+      <details><summary>Тапсырыс беруші төлемей кетсе ше?</summary><p>Ол мүмкін емес: бюджет жұмыс басталмай тұрып escrow шотына салынады. Ақша жұмыс қабылданғанда немесе дау шешілгенде ғана босатылады.</p></details>
+      <details><summary>Сүзгіде AI не істейді?</summary><p>Ережелер қозғалтқышы бірден жауап береді. Содан кейін Gemini мәтіннің мағынасын оқиды: неге қауіпті екенін қазақша түсіндіреді, жасөспірімге кеңес береді, ал қауіпсіз тапсырмаға деңгей мен әділ бюджет ұсынады. Екі үкімнің қатаңырағы жеңеді.</p></details>
+      <details><summary>Неге чатта телефон нөмірін жаза алмаймын?</summary><p>Алаяқтықтың көбі баланы платформадан WhatsApp пен Telegram-ға шығарудан басталады. Сондықтан нөмір, сілтеме және карта деректері чатта автоматты жасырылады.</p></details>
     </div>
+  </div>
 </section>
 </main>
 
-<footer class="border-t border-slate-900 px-4 sm:px-6 lg:px-8 py-10">
-    <div class="mx-auto max-w-7xl flex flex-col md:flex-row gap-6 justify-between text-sm text-slate-500">
-        <div>
-            <p class="font-mono font-black text-matte-orange">SENIM</p>
-            <p class="mt-1">Жастарға арналған қауіпсіз фриланс · Қазақстан</p>
-        </div>
-        <nav aria-label="Төменгі мәзір" class="flex flex-wrap gap-x-6 gap-y-2">
-            <a href="categories.html" class="hover:text-white">Бағыттар</a>
-            <a href="safety.html" class="hover:text-white">Заңдылық</a>
-            <a href="merit.html" class="hover:text-white">Деңгейлер</a>
-            <a href="ai-protection.html" class="hover:text-white">AI қорғаныс</a>
-            <a href="dashboard.html" class="hover:text-white">Демо кабинет</a>
-        </nav>
-        <p class="text-xs max-w-xs">Хакатон прототипі. Кабинеттегі сандар мен пайдаланушылар демо үшін берілген.</p>
-    </div>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <nav aria-label="Төменгі мәзір" class="foot__nav">
+      <a href="categories.html">Бағыттар</a>
+      <a href="safety.html">Заңдылық</a>
+      <a href="merit.html">Деңгейлер</a>
+      <a href="ai-protection.html">AI қорғаныс</a>
+      <a href="dashboard.html">Демо кабинет</a>
+      <a href="https://github.com/galinurislam0-svg/senim" rel="noopener">GitHub</a>
+    </nav>
+    <p class="doc__meta">Хакатон прототипі. SMS шлюзі мен банк әлі қосылмаған: код экранда көрсетіледі, кабинеттегі сандар демо.</p>
+  </div>
+  <p class="foot__word" aria-hidden="true">SENIM</p>
 </footer>
 
-<!-- ─── OTP DIALOG ──────────────────────────────────────── -->
+<!-- OTP -->
 <dialog id="otp-dialog" class="dialog" aria-labelledby="otp-title">
-    <form method="dialog" id="otp-form" class="p-6 sm:p-8 space-y-5">
-        <div>
-            <p class="eyebrow">Ата-ана келісімі</p>
-            <h3 id="otp-title" class="text-2xl font-black font-mono">SMS кодын енгізіңіз</h3>
-            <p class="mt-2 text-sm text-slate-400">Код <b id="otp-phone" class="text-white font-mono"></b> нөміріне жіберілді.</p>
-        </div>
-        <div class="otp-boxes" id="otp-boxes">
-            <input inputmode="numeric" maxlength="1" aria-label="1-цифр"><input inputmode="numeric" maxlength="1" aria-label="2-цифр"><input inputmode="numeric" maxlength="1" aria-label="3-цифр">
-            <input inputmode="numeric" maxlength="1" aria-label="4-цифр"><input inputmode="numeric" maxlength="1" aria-label="5-цифр"><input inputmode="numeric" maxlength="1" aria-label="6-цифр">
-        </div>
-        <p id="otp-error" class="field-error text-center" aria-live="polite"></p>
-        <div class="rounded-xl border border-slate-800 bg-black/40 p-3 text-xs font-mono text-slate-400">
-            Демо режим: SMS шлюзі қосылмаған. Код: <b id="otp-demo" class="text-matte-orange tracking-[0.3em]"></b>
-        </div>
-        <div class="flex gap-3">
-            <button value="cancel" class="btn-ghost flex-1 py-3">Бас тарту</button>
-            <button id="otp-confirm" value="ok" class="btn-primary flex-1 py-3">Растау</button>
-        </div>
-    </form>
+  <form method="dialog" id="otp-form">
+    <p class="label">Ата-ана келісімі</p>
+    <h3 id="otp-title" class="dialog__title">SMS кодын енгізіңіз</h3>
+    <p class="doc__meta">Код <b id="otp-phone"></b> нөміріне жіберілді. 5 минут жарамды.</p>
+    <div class="otp" id="otp-boxes">
+      <input inputmode="numeric" maxlength="1" aria-label="1-цифр" autocomplete="one-time-code"><input inputmode="numeric" maxlength="1" aria-label="2-цифр"><input inputmode="numeric" maxlength="1" aria-label="3-цифр"><input inputmode="numeric" maxlength="1" aria-label="4-цифр"><input inputmode="numeric" maxlength="1" aria-label="5-цифр"><input inputmode="numeric" maxlength="1" aria-label="6-цифр">
+    </div>
+    <p id="otp-error" class="field__err" aria-live="polite"></p>
+    <p class="otp__demo" id="otp-demo-row">Демо режим, SMS шлюзі қосылмаған. Код: <b id="otp-demo"></b></p>
+    <div class="dialog__actions">
+      <button value="cancel" class="btn btn--line">Бас тарту</button>
+      <button id="otp-confirm" value="ok" class="btn btn--seal">Растау</button>
+    </div>
+  </form>
 </dialog>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<script src="js/validators.js"></script>
-<script src="js/security.js"></script>
-<script src="js/escrow.js"></script>
-<script src="js/merit.js"></script>
-<script src="js/app.js"></script>
+<script src="js/vendor/gsap.min.js" defer></script>
+<script src="js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="js/validators.js" defer></script>
+<script src="js/security.js" defer></script>
+<script src="js/escrow.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>

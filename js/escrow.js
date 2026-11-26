@@ -61,6 +61,8 @@
         }
     }
 
-    window.EscrowCore = new EscrowPipeline();
-    window.SENIM_CONFIG = CONFIG;
+    const root = typeof window !== 'undefined' ? window : globalThis;
+    root.EscrowCore = new EscrowPipeline();
+    root.SENIM_CONFIG = CONFIG;
+    if (typeof module !== 'undefined' && module.exports) module.exports = { EscrowCore: root.EscrowCore, CONFIG, EscrowPipeline };
 })();

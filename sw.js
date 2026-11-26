@@ -1,9 +1,11 @@
 // SENIM service worker: беттер желіден (жаңасы бірінші), статика кэштен.
-const CACHE = 'senim-v2';
+const CACHE = 'senim-v3';
 const ASSETS = [
   './', './index.html', './dashboard.html', './categories.html', './merit.html',
-  './safety.html', './ai-protection.html',
-  './css/tw.css', './css/style.css',
+  './safety.html', './ai-protection.html', './404.html',
+  './css/site.css', './css/fonts.css', './css/tw.css', './css/style.css',
+  './assets/fonts/geologica-cyrillic.woff2', './assets/fonts/geologica-cyrillic-ext.woff2', './assets/fonts/geologica-latin.woff2',
+  './assets/fonts/onest-cyrillic.woff2', './assets/fonts/onest-cyrillic-ext.woff2', './assets/fonts/onest-latin.woff2',
   './js/app.js', './js/validators.js', './js/security.js', './js/escrow.js', './js/merit.js', './js/enterprise.js',
   './manifest.json', './assets/icons/logo.svg', './assets/icons/logo-192.png'
 ];
@@ -22,7 +24,8 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   const req = e.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== location.origin || url.pathname.startsWith('/api/')) return;
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).then(res => {

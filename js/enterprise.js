@@ -85,7 +85,7 @@ function injectEscrowSubmissionZone() {
         ].join('');
 
         submissionZone.innerHTML = [
-            '<p style="font-family:\'Courier New\',monospace;font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:10px;">',
+            '<p style="font-family:\'Courier New\',monospace;font-size:9px;color:#9aa5b5;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:10px;">',
             '[ESCROW SUBMISSION TERMINAL] · Жұмысты тексеруге жолдаңыз',
             '</p>',
 
@@ -100,13 +100,13 @@ function injectEscrowSubmissionZone() {
             ' style="display:none;" onchange="handleEscrowFileSelect(this)">',
             '<div style="font-family:\'Courier New\',monospace;font-size:11px;color:#94a3b8;line-height:1.8;">',
             '<div style="font-size:22px;margin-bottom:6px;">📁</div>',
-            '<span id="escrow-file-name" style="color:#64748b;">Файлды осы жерге сүйреп апарыңыз немесе таңдаңыз</span><br>',
-            '<span style="font-size:9px;color:#475569;">.zip · .pdf · .jsx · .tsx · .fig · .html — қабылданады</span>',
+            '<span id="escrow-file-name" style="color:#9aa5b5;">Файлды осы жерге сүйреп апарыңыз немесе таңдаңыз</span><br>',
+            '<span style="font-size:9px;color:#8b96a6;">.zip · .pdf · .jsx · .tsx · .fig · .html — қабылданады</span>',
             '</div></label>',
 
             '<div style="position:relative;margin-bottom:12px;">',
             '<span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);',
-            'font-family:\'Courier New\',monospace;font-size:10px;color:#475569;pointer-events:none;">🔗</span>',
+            'font-family:\'Courier New\',monospace;font-size:10px;color:#8b96a6;pointer-events:none;">🔗</span>',
             '<input type="text" id="escrow-url-input" placeholder="Git / Figma сілтемесін қойыңыз (https://...)" style="',
             'width:100%;box-sizing:border-box;background:rgba(0,0,0,0.6);border:1px solid #1e293b;',
             'border-radius:10px;padding:10px 12px 10px 30px;font-family:\'Courier New\',monospace;',
@@ -231,7 +231,7 @@ function runEscrowAuditStream() {
     ];
 
     var sep = document.createElement('div');
-    sep.style.cssText = 'color:#334155;font-family:"Courier New",monospace;font-size:10px;margin-top:6px;';
+    sep.style.cssText = 'color:#8b96a6;font-family:"Courier New",monospace;font-size:10px;margin-top:6px;';
     sep.textContent   = '─────────────────────────────────────';
     mentorConsole.appendChild(sep);
 
@@ -426,7 +426,7 @@ function triggerFraudAlert(originalMsg, matchedPhrase) {
         '</div>',
         '<div style="color:#fca5a5;font-size:9px;">[TELEMETRY]: User communications isolated. Security protocols active.</div>',
         '<div style="color:#f87171;font-size:9px;margin-top:2px;">[PATTERN MATCH]: "<span style="background:rgba(239,68,68,0.25);padding:0 3px;border-radius:3px;">' + escHtml(matchedPhrase) + '</span>"</div>',
-        '<div style="color:#6b7280;font-size:8px;margin-top:4px;">[CASE ID]: SENIM-FRAUD-' + Date.now() + ' · ' + new Date().toLocaleTimeString('kk-KZ') + '</div>'
+        '<div style="color:#9aa5b5;font-size:8px;margin-top:4px;">[CASE ID]: SENIM-FRAUD-' + Date.now() + ' · ' + new Date().toLocaleTimeString('kk-KZ') + '</div>'
     ].join('');
     mentorConsole.appendChild(alertBlock);
     mentorConsole.scrollTop = mentorConsole.scrollHeight;
@@ -458,14 +458,29 @@ function dispatchSafeMentorMessage(text, mentorInput) {
     else if (lower.includes('python') || lower.includes('функция'))    resp = responses.python;
     else if (lower.includes('figma') || lower.includes('auto layout')) resp = responses.figma;
 
-    setTimeout(function(){
-        var aiLine = document.createElement('div');
-        aiLine.style.cssText = 'color:#34d399;font-family:"Courier New",monospace;font-size:10px;';
-        aiLine.textContent   = '// AI: ' + resp;
-        mentorConsole.appendChild(aiLine);
-        mentorConsole.scrollTop = mentorConsole.scrollHeight;
-    }, 420);
+    var aiLine = document.createElement('div');
+    aiLine.style.cssText = 'color:#34d399;font-family:"Courier New",monospace;font-size:10px;white-space:pre-wrap;line-height:1.6;';
+    aiLine.textContent   = '// AI ойланып жатыр…';
+    mentorConsole.appendChild(aiLine);
+    mentorConsole.scrollTop = mentorConsole.scrollHeight;
+
+    // Шынайы тәлімгер: /api/mentor (Gemini). Сервер жоқ болса — дайын жауап.
+    var history = MENTOR_HISTORY.slice(-6);
+    MENTOR_HISTORY.push({ role: 'user', text: text });
+    fetch('/api/mentor', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history: history })
+    }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+      .then(function(x){
+        if (x.d && x.d.blocked) { aiLine.remove(); triggerFraudAlert(text, (x.d.reasons[0] || {}).label || 'сүзгі'); return; }
+        if (!x.ok || !x.d.reply) throw new Error('no reply');
+        aiLine.textContent = '// AI: ' + x.d.reply;
+        MENTOR_HISTORY.push({ role: 'ai', text: x.d.reply });
+      })
+      .catch(function(){ aiLine.textContent = '// AI (офлайн): ' + resp; })
+      .then(function(){ mentorConsole.scrollTop = mentorConsole.scrollHeight; });
 }
+var MENTOR_HISTORY = [];
 
 // ─────────────────────────────────────────────────────────────────────
 // UPGRADE 3 ▸ HIGH-FIDELITY BENTO SVG PRODUCTION ANALYTICS
@@ -548,11 +563,11 @@ function injectSVGAnalyticsPanel() {
     panel.innerHTML = [
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px;">',
           '<div>',
-            '<p style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.18em;margin:0 0 4px;">Апталық деректер</p>',
+            '<p style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.18em;margin:0 0 4px;">Апталық деректер</p>',
             '<h2 style="font-family:\'Courier New\',monospace;font-size:16px;font-weight:900;color:#fff;margin:0;">📈 Табыс және транзакциялар аналитикасы</h2>',
           '</div>',
           '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">',
-            '<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:3px;background:#E66E38;border-radius:2px;display:inline-block;"></span><span style="font-family:\'Courier New\',monospace;font-size:9px;color:#64748b;">Табыс ₸</span></div>',
+            '<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:3px;background:#E66E38;border-radius:2px;display:inline-block;"></span><span style="font-family:\'Courier New\',monospace;font-size:9px;color:#9aa5b5;">Табыс ₸</span></div>',
             '<span style="font-family:\'Courier New\',monospace;font-size:9px;font-weight:700;background:rgba(230,110,56,0.1);color:#E66E38;padding:3px 10px;border-radius:20px;border:1px solid rgba(230,110,56,0.25);">↑ +234% 8 апта</span>',
             '<span style="font-family:\'Courier New\',monospace;font-size:9px;font-weight:700;background:rgba(52,211,153,0.08);color:#34d399;padding:3px 10px;border-radius:20px;border:1px solid rgba(52,211,153,0.2);">● LIVE</span>',
           '</div>',
@@ -579,7 +594,7 @@ function injectSVGAnalyticsPanel() {
           '</svg>',
           '<div id="svg-tooltip" style="position:absolute;pointer-events:none;opacity:0;transition:opacity 0.2s ease,transform 0.2s ease;transform:translateY(-6px);z-index:100;">',
             '<div style="background:rgba(18,18,20,0.97);border:1px solid rgba(230,110,56,0.5);border-radius:10px;padding:8px 14px;box-shadow:0 8px 30px rgba(0,0,0,0.6);white-space:nowrap;">',
-              '<div id="svg-tooltip-week" style="font-family:\'Courier New\',monospace;font-size:9px;color:#64748b;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.1em;"></div>',
+              '<div id="svg-tooltip-week" style="font-family:\'Courier New\',monospace;font-size:9px;color:#9aa5b5;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.1em;"></div>',
               '<div id="svg-tooltip-val" style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#E66E38;"></div>',
             '</div>',
             '<div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid rgba(230,110,56,0.5);margin:0 auto;"></div>',
@@ -587,10 +602,10 @@ function injectSVGAnalyticsPanel() {
         '</div>',
 
         '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;border-top:1px solid #0f172a;padding-top:16px;">',
-          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Жоғары апта</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#E66E38;">107,000 ₸</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#1e3a2f;">8-апта</div></div>',
-          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Орт. апт. табыс</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#fff;">66,625 ₸</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#334155;">8 апта</div></div>',
-          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Жалпы табыс</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#34d399;">533,000 ₸</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#1e3a2f;">↑ БАРЛЫҚ АПТА</div></div>',
-          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Өсу коэффиц.</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#a78bfa;">+234%</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#312e81;">Апт 1 → Апт 8</div></div>',
+          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Жоғары апта</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#E66E38;">107,000 ₸</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#7fbf9a;">8-апта</div></div>',
+          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Орт. апт. табыс</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#fff;">66,625 ₸</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#8b96a6;">8 апта</div></div>',
+          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Жалпы табыс</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#34d399;">533,000 ₸</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#7fbf9a;">↑ БАРЛЫҚ АПТА</div></div>',
+          '<div style="text-align:center;"><div style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">Өсу коэффиц.</div><div style="font-family:\'Courier New\',monospace;font-size:14px;font-weight:900;color:#a78bfa;">+234%</div><div style="font-family:\'Courier New\',monospace;font-size:8px;color:#a5b4fc;">Апт 1 → Апт 8</div></div>',
         '</div>'
     ].join('');
 
@@ -663,10 +678,10 @@ function injectInvoiceLedger() {
             ' onmouseout="this.style.background=\'' + bg + '\'">',
 
               '<div><div style="font-family:\'Courier New\',monospace;font-size:11px;color:#e2e8f0;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + inv.project + '</div>',
-              '<div style="font-family:\'Courier New\',monospace;font-size:8px;color:#334155;">' + inv.id + '</div>',
-              '<div style="font-family:\'Courier New\',monospace;font-size:8px;color:#1e3a5f;margin-top:1px;">' + inv.date + '</div></div>',
+              '<div style="font-family:\'Courier New\',monospace;font-size:8px;color:#8b96a6;">' + inv.id + '</div>',
+              '<div style="font-family:\'Courier New\',monospace;font-size:8px;color:#7d8aa0;margin-top:1px;">' + inv.date + '</div></div>',
 
-              '<div style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;">',
+              '<div style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;">',
               '<span style="background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:4px;border:1px solid #1e293b;font-size:8px;">' + inv.txHash + '</span></div>',
 
               '<div style="text-align:right;font-family:\'Courier New\',monospace;font-size:11px;font-weight:900;color:#fff;">' + inv.amount.toLocaleString('ru-KZ') + ' ₸</div>',
@@ -702,20 +717,20 @@ function injectInvoiceLedger() {
           '<div style="display:flex;align-items:center;gap:12px;">',
             '<span style="font-size:18px;">🧾</span>',
             '<div>',
-              '<p style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 2px;">Автоматты генерация · ҚР Еңбек Кодексі</p>',
+              '<p style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 2px;">Автоматты генерация · ҚР Еңбек Кодексі</p>',
               '<h3 style="font-family:\'Courier New\',monospace;font-size:13px;font-weight:900;color:#fff;margin:0;">Ресми электронды чектер мен келісімшарттар</h3>',
             '</div>',
           '</div>',
           '<div style="display:flex;align-items:center;gap:10px;">',
             '<span style="font-family:\'Courier New\',monospace;font-size:9px;background:rgba(230,110,56,0.1);color:#E66E38;padding:3px 10px;border-radius:20px;border:1px solid rgba(230,110,56,0.25);font-weight:700;">' + INVOICE_LEDGER_DATA.length + ' жазба</span>',
-            '<span id="invoice-chevron" style="font-family:\'Courier New\',monospace;font-size:12px;color:#475569;transition:transform 0.3s ease;display:inline-block;">▼</span>',
+            '<span id="invoice-chevron" style="font-family:\'Courier New\',monospace;font-size:12px;color:#8b96a6;transition:transform 0.3s ease;display:inline-block;">▼</span>',
           '</div>',
         '</div>',
 
         '<div id="invoice-ledger-body" style="overflow:hidden;max-height:0;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1),opacity 0.35s ease;opacity:0;">',
           '<div style="background:rgba(18,18,20,0.6);border:1px solid #0f172a;border-top:none;border-radius:0 0 14px 14px;overflow:hidden;">',
 
-            '<div style="display:grid;grid-template-columns:1.8fr 1fr 0.8fr 0.8fr 0.8fr 1.2fr 0.9fr;padding:10px 20px;border-bottom:1px solid #0f172a;font-family:\'Courier New\',monospace;font-size:8px;color:#334155;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">',
+            '<div style="display:grid;grid-template-columns:1.8fr 1fr 0.8fr 0.8fr 0.8fr 1.2fr 0.9fr;padding:10px 20px;border-bottom:1px solid #0f172a;font-family:\'Courier New\',monospace;font-size:8px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">',
               '<span>Жоба / ID</span><span>TX Хэш</span><span style="text-align:right;">Жалпы</span>',
               '<span style="text-align:right;">Салық</span><span style="text-align:right;">Таза</span>',
               '<span style="text-align:center;">Сәйкестік</span><span style="text-align:right;">Әрекет</span>',
@@ -724,7 +739,7 @@ function injectInvoiceLedger() {
             rowsHTML,
 
             '<div style="display:grid;grid-template-columns:1.8fr 1fr 0.8fr 0.8fr 0.8fr 1.2fr 0.9fr;padding:14px 20px;border-top:2px solid #1e293b;align-items:center;background:rgba(0,0,0,0.3);">',
-              '<div style="font-family:\'Courier New\',monospace;font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">БАРЛЫҚ ТРАНЗАКЦИЯЛАР</div>',
+              '<div style="font-family:\'Courier New\',monospace;font-size:9px;color:#8b96a6;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">БАРЛЫҚ ТРАНЗАКЦИЯЛАР</div>',
               '<div></div>',
               '<div style="text-align:right;font-family:\'Courier New\',monospace;font-size:12px;font-weight:900;color:#fff;">' + totalAmount.toLocaleString('ru-KZ') + ' ₸</div>',
               '<div style="text-align:right;font-family:\'Courier New\',monospace;font-size:12px;font-weight:900;color:#E66E38;">' + totalTax.toLocaleString('ru-KZ') + ' ₸</div>',
@@ -733,8 +748,8 @@ function injectInvoiceLedger() {
             '</div>',
 
             '<div style="padding:12px 20px;border-top:1px solid #0f172a;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">',
-              '<span style="font-family:\'Courier New\',monospace;font-size:8px;color:#1e293b;">⚖️ Барлық транзакциялар ҚР Еңбек Кодексінің 31-бабына сәйкес шифрланып сақталады · SENIM Legal Ledger Engine v3.1</span>',
-              '<button onclick="downloadAllInvoicesPDF()" style="background:transparent;border:1px solid #1e293b;border-radius:7px;padding:5px 12px;font-family:\'Courier New\',monospace;font-size:8px;color:#475569;cursor:pointer;transition:all 0.2s;"',
+              '<span style="font-family:\'Courier New\',monospace;font-size:8px;color:#8b96a6;">⚖️ Барлық транзакциялар ҚР Еңбек Кодексінің 31-бабына сәйкес шифрланып сақталады · SENIM Legal Ledger Engine v3.1</span>',
+              '<button onclick="downloadAllInvoicesPDF()" style="background:transparent;border:1px solid #1e293b;border-radius:7px;padding:5px 12px;font-family:\'Courier New\',monospace;font-size:8px;color:#8b96a6;cursor:pointer;transition:all 0.2s;"',
               ' onmouseover="this.style.borderColor=\'rgba(230,110,56,0.4)\';this.style.color=\'#E66E38\'"',
               ' onmouseout="this.style.borderColor=\'#1e293b\';this.style.color=\'#475569\'">⬇ Барлығын жүктеу (PDF архив)</button>',
             '</div>',
@@ -762,7 +777,7 @@ function toggleInvoiceLedger() {
 function downloadInvoicePDF(id, project, amount, tax, net, txHash, date, compliance) {
     var userName    = localStorage.getItem('senim_user_name') || 'Жас Кәсіпкер';
     var printWin    = window.open('', '_blank', 'width=800,height=700');
-    printWin.document.write('<!DOCTYPE html><html lang="kk"><head><meta charset="UTF-8"><title>SENIM Invoice · ' + id + '</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#fff;font-family:\'Courier New\',Courier,monospace;color:#111;padding:48px;}.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:24px;border-bottom:2px solid #E66E38;}.brand{font-size:28px;font-weight:900;color:#E66E38;letter-spacing:-0.02em;}.brand-sub{font-size:9px;color:#999;letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;}.inv-title{text-align:right;}.inv-title h1{font-size:22px;font-weight:900;color:#111;letter-spacing:0.05em;}.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;}.meta-block h4{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:#999;margin-bottom:6px;}.meta-block p{font-size:12px;color:#222;font-weight:700;line-height:1.7;}table{width:100%;border-collapse:collapse;margin-bottom:24px;}th{border-bottom:2px solid #E66E38;padding:10px 12px;text-align:left;font-size:9px;color:#999;text-transform:uppercase;letter-spacing:0.12em;}td{padding:12px;border-bottom:1px solid #f0f0f0;font-size:12px;color:#333;}.right{text-align:right;font-weight:700;}.orange{color:#E66E38;}.green{color:#059669;font-weight:900;}.sum-box{background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;padding:20px 24px;margin-bottom:24px;}.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #f0f0f0;}.sum-row:last-child{border-bottom:none;font-size:16px;font-weight:900;}.comp{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:10px;color:#166534;line-height:1.8;}.tx-box{background:#1a1a1c;border-radius:8px;padding:14px 18px;margin-bottom:32px;font-size:10px;color:#64748b;line-height:1.8;}.tx-box span{color:#34d399;font-weight:700;}.footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e5e7eb;padding-top:20px;}.footer p{font-size:8px;color:#aaa;}.seal{width:72px;height:72px;border:3px solid #E66E38;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#E66E38;font-weight:900;text-align:center;letter-spacing:0.05em;text-transform:uppercase;}</style></head><body>');
+    printWin.document.write('<!DOCTYPE html><html lang="kk"><head><meta charset="UTF-8"><title>SENIM Invoice · ' + id + '</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#fff;font-family:\'Courier New\',Courier,monospace;color:#111;padding:48px;}.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:24px;border-bottom:2px solid #E66E38;}.brand{font-size:28px;font-weight:900;color:#E66E38;letter-spacing:-0.02em;}.brand-sub{font-size:9px;color:#999;letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;}.inv-title{text-align:right;}.inv-title h1{font-size:22px;font-weight:900;color:#111;letter-spacing:0.05em;}.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;}.meta-block h4{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:#999;margin-bottom:6px;}.meta-block p{font-size:12px;color:#222;font-weight:700;line-height:1.7;}table{width:100%;border-collapse:collapse;margin-bottom:24px;}th{border-bottom:2px solid #E66E38;padding:10px 12px;text-align:left;font-size:9px;color:#999;text-transform:uppercase;letter-spacing:0.12em;}td{padding:12px;border-bottom:1px solid #f0f0f0;font-size:12px;color:#333;}.right{text-align:right;font-weight:700;}.orange{color:#E66E38;}.green{color:#059669;font-weight:900;}.sum-box{background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;padding:20px 24px;margin-bottom:24px;}.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #f0f0f0;}.sum-row:last-child{border-bottom:none;font-size:16px;font-weight:900;}.comp{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:10px;color:#86efac;line-height:1.8;}.tx-box{background:#1a1a1c;border-radius:8px;padding:14px 18px;margin-bottom:32px;font-size:10px;color:#9aa5b5;line-height:1.8;}.tx-box span{color:#34d399;font-weight:700;}.footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e5e7eb;padding-top:20px;}.footer p{font-size:8px;color:#aaa;}.seal{width:72px;height:72px;border:3px solid #E66E38;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#E66E38;font-weight:900;text-align:center;letter-spacing:0.05em;text-transform:uppercase;}</style></head><body>');
     printWin.document.write('<div class="hdr"><div><div class="brand">SENIM</div><div class="brand-sub">Platform · Ресми Шот-Фактура</div></div><div class="inv-title"><h1>INVOICE</h1><p>' + id + '</p><p style="margin-top:4px;font-size:11px;color:#E66E38;">' + date + '</p></div></div>');
     printWin.document.write('<div class="meta-grid"><div class="meta-block"><h4>Орындаушы</h4><p>' + escHtml(userName) + '<br>ЖК · SENIM Verified Freelancer<br>Merit Level 2 · ID: SNM-USR-8821</p></div><div class="meta-block"><h4>Тапсырыс беруші</h4><p>SENIM Platform B2B<br>ҚР, Алматы қ., Абай д-лы 150А<br>БСН: 201840023881</p></div></div>');
     printWin.document.write('<table><thead><tr><th>Қызмет / Жоба</th><th style="text-align:right;">Жалпы сома</th><th style="text-align:right;">Салық (4%)</th><th style="text-align:right;">Таза табыс</th></tr></thead><tbody><tr><td>' + escHtml(project) + '</td><td class="right">' + amount.toLocaleString('ru-KZ') + ' ₸</td><td class="right orange">' + tax.toLocaleString('ru-KZ') + ' ₸</td><td class="right green">' + net.toLocaleString('ru-KZ') + ' ₸</td></tr></tbody></table>');
